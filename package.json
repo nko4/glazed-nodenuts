@@ -1,0 +1,19 @@
+{
+  "name": "nko4-glazed-nodenuts",
+  "version": "0.0.0",
+  "description": "Glazed Nodenuts",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nko4/glazed-nodenuts.git"
+  },
+  "dependencies": {
+    "nko": "*"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
