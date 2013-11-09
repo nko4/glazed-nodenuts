@@ -1,6 +1,7 @@
 window.lyrics = null;
 var $lyrics = $('some-lyrics');
 var $monitor = $('.tv-contents');
+var $songTitle = $('.tv-title');
 
 // Promise me to callback
 // Fetch State.
@@ -57,19 +58,21 @@ function simulatePlaying(song, startPosition) {
     });
 
 
-   // Retrieve song meta data and put into array
-   window.songInfo = []
-   for (var i = 0; i <= 100; i++ ) {
-     var event  = player.data[i][0].event;	  
-     if ( event.type == 'meta' && event.text ) {
-      var metaText = event.text.split(""); 
-      if ( metaText[1] == 'T') {
-	     window.songInfo.push(event.text.substr(2, event.text.length -2));
-	  }
-     } 
-   }
+    // Retrieve song meta data and put into array
+    var songArray = []
+    for (var i = 0; i <= 100; i++ ) {
+      var event  = player.data[i][0].event;	  
+      if ( event.type == 'meta' && event.text ) {
+        var metaText = event.text.split(""); 
+        if ( metaText[1] == 'T') {
+	      songArray.push(event.text.substr(2, event.text.length -2));
+	    }
+      } 
+    }
+    displaySongInfo( songArray );
    
-   console.log(window.songInfo);
+    // set songArray to global in case needed later
+    window.songArray = songArray;
 
     player.addListener(function(data) {
 
@@ -112,4 +115,11 @@ function simulatePlaying(song, startPosition) {
 
 function scrollLyrics( yPos ) {
   $lyrics.css({ 'top' : '-' + yPos + 'px' });
+}
+
+function displaySongInfo( songArray ) {
+  $songTitle.html("");
+  for (var i = 0; i < songArray.length; i++ ) {
+	$songTitle.append(songArray[i] + '<br />');
+  }
 }
