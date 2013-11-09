@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Andada';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Andada-Regular'), url(http://themes.googleusercontent.com/static/fonts/andada/v4/HK6E03N0eDN77VpuH54ohOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}
