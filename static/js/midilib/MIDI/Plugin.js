@@ -137,9 +137,6 @@ if (window.AudioContext || window.webkitAudioContext) (function () {
 		var synth = MIDI.GeneralMIDI.byName[instrument];
 		var instrumentId = synth.number;
 		var url = urlList[index];
-		if (!MIDI.Soundfont[instrument][url]) { // missing soundfont
-			return callback(instrument);
-		}
 		var base64 = MIDI.Soundfont[instrument][url].split(",")[1];
 		var buffer = Base64Binary.decodeArrayBuffer(base64);
 		ctx.decodeAudioData(buffer, function (buffer) {
@@ -240,6 +237,9 @@ if (window.AudioContext || window.webkitAudioContext) (function () {
 		};
 		for (var instrument in MIDI.Soundfont) {
 			pending[instrument] = true;
+			// limit octave range
+			bufferList = bufferList.slice(49,62);
+			urlList = urlList.slice(49,62);
 			for (var i = 0; i < urlList.length; i++) {
 				audioLoader(instrument, urlList, i, bufferList, oncomplete);
 			}
@@ -264,7 +264,6 @@ if (window.Audio) (function () {
 	var volume = 127; // floating point 
 	var channel_nid = -1; // current channel
 	var channels = []; // the audio channels
-	var channelInstrumentNoteIds = []; // instrumentId + noteId that is currently playing in each 'channel', for routing noteOff/chordOff calls
 	var notes = {}; // the piano keys
 	for (var nid = 0; nid < 12; nid++) {
 		channels[nid] = new Audio();
@@ -273,37 +272,16 @@ if (window.Audio) (function () {
 	var playChannel = function (channel, note) {
 		if (!MIDI.channels[channel]) return;
 		var instrument = MIDI.channels[channel].instrument;
-		var instrumentId = MIDI.GeneralMIDI.byId[instrument].id;
+		var id = MIDI.GeneralMIDI.byId[instrument].id;
 		var note = notes[note];
 		if (!note) return;
-		var instrumentNoteId = instrumentId + "" + note.id;
 		var nid = (channel_nid + 1) % channels.length;
+		var time = (new Date()).getTime();
 		var audio = channels[nid];
-		channelInstrumentNoteIds[ nid ] = instrumentNoteId;
-		audio.src = MIDI.Soundfont[instrumentId][note.id];
+		audio.src = MIDI.Soundfont[id][note.id];
 		audio.volume = volume / 127;
 		audio.play();
 		channel_nid = nid;
-	};
-
-	var stopChannel = function (channel, note) {
-		if (!MIDI.channels[channel]) return;
-		var instrument = MIDI.channels[channel].instrument;
-		var instrumentId = MIDI.GeneralMIDI.byId[instrument].id;
-		var note = notes[note];
-		if (!note) return;
-		var instrumentNoteId = instrumentId + "" + note.id;
-
-		for(var i=0;i<channels.length;i++){
-			var nid = (i + channel_nid + 1) % channels.length;
-			var cId = channelInstrumentNoteIds[nid];
-
-			if(cId && cId == instrumentNoteId){
-				channels[nid].pause();
-				channelInstrumentNoteIds[nid] = null;
-				return;
-			}
-		}
 	};
 
 	root.programChange = function (channel, program) {
@@ -327,15 +305,9 @@ if (window.Audio) (function () {
 	};
 	
 	root.noteOff = function (channel, note, delay) {
-		var id = note2id[note];
-		if (!notes[id]) return;
-		if (delay) {
-			return setTimeout(function() {
-				stopChannel(channel, id);
-			}, delay * 1000)
-		} else {
-			stopChannel(channel, id);
-		}
+		setTimeout(function() {
+			channels[channel].pause();
+		}, delay * 1000)
 	};
 	
 	root.chordOn = function (channel, chord, velocity, delay) {
@@ -360,10 +332,10 @@ if (window.Audio) (function () {
 			if (!notes[id]) continue;
 			if (delay) {
 				return window.setTimeout(function () {
-					stopChannel(channel, id);
+					channels[channel].pause();
 				}, delay * 1000);
 			} else {
-				stopChannel(channel, id);
+				channels[channel].pause();
 			}
 		}
 	};
@@ -375,6 +347,7 @@ if (window.Audio) (function () {
 	};
 	
 	root.connect = function (conf) {
+		var loading = {};
 		for (var key in MIDI.keyToNote) {
 			note2id[MIDI.keyToNote[key]] = key;
 			notes[key] = {
@@ -451,10 +424,10 @@ if (window.Audio) (function () {
 
 	};
 
-	root.connect = function (instruments, conf) {
+	root.connect = function (conf) {
 		soundManager.flashVersion = 9;
 		soundManager.useHTML5Audio = true;
-		soundManager.url = conf.soundManagerSwfUrl || '../inc/SoundManager2/swf/';
+		soundManager.url = '../inc/SoundManager2/swf/';
 		soundManager.useHighPerformance = true;
 		soundManager.wmode = 'transparent';
 		soundManager.flashPollingInterval = 1;
@@ -471,19 +444,15 @@ if (window.Audio) (function () {
 					onload: onload
 				});			
 			};
-			var loaded = [];
-			var samplesPerInstrument = 88;
-			var samplesToLoad = instruments.length * samplesPerInstrument;
-				
-			for (var i = 0; i < instruments.length; i++) {
-				var instrument = instruments[i];
+			for (var instrument in MIDI.Soundfont) {
+				var loaded = [];
 				var onload = function () {
 					loaded.push(this.sID);
 					if (typeof (MIDI.loader) === "undefined") return;
 					MIDI.loader.update(null, "Processing: " + this.sID);
 				};
-				for (var j = 0; j < samplesPerInstrument; j++) {
-					var id = noteReverse[j + 21];
+				for (var i = 0; i < 88; i++) {
+					var id = noteReverse[i + 21];
 					createBuffer(instrument, id, onload);
 				}
 			}
@@ -491,7 +460,7 @@ if (window.Audio) (function () {
 			setPlugin(root);
 			//
 			var interval = window.setInterval(function () {
-				if (loaded.length < samplesToLoad) return;
+				if (loaded.length !== 88) return;
 				window.clearInterval(interval);
 				if (conf.callback) conf.callback();
 			}, 25);

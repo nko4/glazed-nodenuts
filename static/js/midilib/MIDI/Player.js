@@ -112,6 +112,9 @@ root.loadFile = function (file, callback) {
 		return;
 	}
 	///
+	var title = file.split(" - ")[1] || file;
+	document.getElementById("playback-title").innerHTML = title.replace(".mid","");
+	///
 	var fetch = new XMLHttpRequest();
 	fetch.open('GET', file);
 	fetch.overrideMimeType("text/plain; charset=x-user-defined");
