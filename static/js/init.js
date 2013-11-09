@@ -1,6 +1,6 @@
 window.lyrics = null;
 var $lyrics = $('some-lyrics');
-var $monitor = $('.monitor');
+var $monitor = $('.tv-contents');
 
 // Fetch lyrics.
 $.getJSON('/api/lyrics', function(lyrics) {
