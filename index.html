@@ -18,10 +18,9 @@
 <body>
   <script id="lyrics" type="whambamthankma'am">
     <% lyrics.each(function(lyric) { %>
-      <a-lyric
-        data-index="<%= lyric.index %>"
-        data-playTime="<%= 
-        <%= lyric.text %></a-lyric>
+      <a-lyric data-index="<%= Number(lyric.index) %>">
+        <%= lyric.text %>
+      </a-lyric>
     <% }); %>
   </script>
 
