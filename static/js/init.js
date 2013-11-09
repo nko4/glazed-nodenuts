@@ -36,6 +36,8 @@ function simulatePlaying(song) {
     // this is the language we are running in
     // this sets up the MIDI.Player and gets things going...
     var player = MIDI.Player;
+    console.log(MIDI);
+    console.log(player);
     // TODO: I don't think this works, something about volume has to be changed for each channel.
     MIDI.setVolume(0.01);
     player.timeWarp = 1; // speed the song is played back

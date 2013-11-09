@@ -4,8 +4,9 @@
   <title></title>
 
   <link rel="stylesheet" href="css/bootstrap.css" />
-  <link rel="stylesheet" href="css/glazed.css" />
+  
   <link rel="stylesheet" href="css/tv.css" />
+  <link rel="stylesheet" href="css/glazed.css" />
 
   <script src="/js/jquery-1.10.2.js"></script>
   <script src="/js/lodash.js"></script>
@@ -42,28 +43,27 @@
   
     <section id="karaoke-machine">
 
-       <div class="tv">
         <div class="tv-screen">
           <div class="tv-contents song">
             <some-lyrics></some-lyrics>
           </div>
         </div>
+
+        <div class="tv-title">
+          <span id="song-title">Swoop the Swoopy Swoop</span><br />
+          By <em id="song-artist">Vlad and the Impalers</em>
+        </div>
         <ul class="tv-knobs">
           <li>
-            <a href="#next" class="tv-control"></a>
-            <a class="tv-label">placeholder</a>
+            <a href="#next" class="tv-control" onclick="MIDI.setVolume(-500);"></a>
+            <a class="tv-label">mute</a>
           </li>
           <li>
-            <a href="#prev" class="tv-control"></a>
-            <a class="tv-label">placeholder</a>
+            <a href="#prev" class="tv-control" onclick="MIDI.setVolume(0)"></a>
+            <a class="tv-label">unmute</a>
           </li>
         </ul>
-        <div class="tv-title">
-          Woop woop<br/>
-          By <em>Vlad and the Impalers</em>
-        </div>
-      </div>
-    
+            
     </section>
     
     <footer>
