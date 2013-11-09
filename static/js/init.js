@@ -3,7 +3,7 @@ var $lyrics = $('some-lyrics');
 var $monitor = $('.tv-contents');
 
 // Fetch lyrics.
-$.getJSON('/api/lyrics', function(lyrics) {
+$.getJSON('/api/lyrics/twoprinc.kar', function(lyrics) {
   var template = _.template($('#lyrics').html());
 
   // Globalize.
@@ -11,10 +11,16 @@ $.getJSON('/api/lyrics', function(lyrics) {
 
   $('some-lyrics').html(template({ lyrics: _(lyrics) }));
 
-  simulatePlaying();
+  //simulatePlaying();
+
+  $.getJSON('/api/songs/twoprinc.kar', function(song) {
+
+    simulatePlaying(song);
+  });
+
 });
 
-function simulatePlaying() {
+function simulatePlaying(song) {
   var startTime = Date.now();
   var start = Number(lyrics[0].playTime);
   var stop = Number(lyrics[lyrics.length-1].playTime);
@@ -31,7 +37,7 @@ function simulatePlaying() {
     // this sets up the MIDI.Player and gets things going...
     player = MIDI.Player;
     player.timeWarp = 1; // speed the song is played back
-    player.loadFile(song[1], player.start);
+    player.loadFile(song, player.start);
 
     player.addListener(function(data) {
       var elapsed = data.now/1000;
