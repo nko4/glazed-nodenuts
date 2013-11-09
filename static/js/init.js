@@ -1,8 +1,12 @@
 (function(window) {
   "use strict";
 
-  // Deal with it.
-  window.lyrics = null;
+  // Deal with it, yeaaaaaa.
+  var lyrics = null;
+  var currentSongFile = null;
+  var startPosition = null;
+  var player = null;
+  var song = null;
 
   // Cache me some jQuery DOM.
   var dom = {
@@ -21,8 +25,8 @@
   function playCurrentSong() {
     // Fetch the current state.
     return $.getJSON('/api/playlist/state').then(function(state) {
-      var currentSongFile = state.song;
-      var startPosition = state.position;
+      currentSongFile = state.song;
+      startPosition = state.position;
 
       // Bail out if we have no songs to play.
       if (!currentSongFile) {
@@ -30,26 +34,26 @@
       }
 
       // Fetch the lyrics and base64 song data.
-      var lyrics = $.getJSON('/api/lyrics/' + encodeURI(currentSongFile));
-      var song = $.getJSON('/api/songs/' + encodeURI(currentSongFile));
+      var lyricsReq = $.getJSON('/api/lyrics/' + encodeURI(currentSongFile));
+      var songReq = $.getJSON('/api/songs/' + encodeURI(currentSongFile));
 
-      return $.when(lyrics, song).then(function(lyrics, song) {
+      return $.when(lyricsReq, songReq).then(function(_lyrics, _song) {
         // Reset lyrics.
-        window.lyrics = lyrics = lyrics[0];
+        lyrics = _lyrics[0];
 
         // Normalize song.
-        song = song[0];
+        song = _song[0];
 
         // Show the lyrics on the page.
         dom.lyrics.html(template.lyrics({ lyrics: _(lyrics) }));
 
         // Start playing the song.
-        simulatePlaying(song, startPosition);
+        play();
       });
     });
   }
 
-  function simulatePlaying(song, startPosition) {
+  function play() {
     var startTime = Date.now();
     var start = Number(lyrics[0].playTime);
     var stop = Number(lyrics[lyrics.length-1].playTime);
@@ -64,7 +68,7 @@
     MIDI.loadPlugin(function () {
       // this is the language we are running in
       // this sets up the MIDI.Player and gets things going...
-      var player = MIDI.Player;
+      player = MIDI.Player;
       MIDI.setVolume(0,9);
 
       player.timeWarp = 1; // speed the song is played back
@@ -143,9 +147,28 @@
 
         console.log(curPlayTime, elapsed, startPosition);
       }, 100);
-
     });
   }
+
+  function connectSocket() {
+    var url = ['http://', location.hostname, ':', location.port].join('');
+    var socket = io.connect(url);
+
+    socket.on('pulse', function(state) {
+      console.clear();
+
+      // If we are on a totally different song now, change it.
+      if (currentSongFile !== state.song) {
+        return playCurrentSong();
+      }
+
+      // Otherwise sychronize to the latest.
+      player.currentTime = state.position * 1000;
+    });
+  }
+
+  // Monitor synchronization pulses.
+  connectSocket();
 
   function scrollLyrics( yPos ) {
     dom.lyrics.css({ 'top' : '-' + yPos + 'px' });
