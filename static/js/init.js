@@ -17,7 +17,7 @@ $.getJSON('/api/lyrics/youreallygotme.kar', function(lyrics) {
 
     simulatePlaying(song);
   });
-
+  
 });
 
 function simulatePlaying(song) {
@@ -35,15 +35,23 @@ function simulatePlaying(song) {
   MIDI.loadPlugin(function () {
     // this is the language we are running in
     // this sets up the MIDI.Player and gets things going...
-    var player = MIDI.Player;
-    console.log(MIDI);
-    console.log(player);
+    var player = MIDI.Player;   
+    
     // TODO: I don't think this works, something about volume has to be changed for each channel.
     MIDI.setVolume(0.01);
     player.timeWarp = 1; // speed the song is played back
     player.loadFile(song, player.start);
+    
+   // Retrieve song meta data
+   for (var i = 0; i <= 100; i++ ) {
+     var event  = player.data[i][0].event;	  
+     if ( event.subtype == "trackName" ) {
+	     console.log( '[' + i + ']' + event.text);
+     } 
+   }
 
     player.addListener(function(data) {
+    	   
       var elapsed = data.now/1000;
 
       // Bail out if out of lyrics.
