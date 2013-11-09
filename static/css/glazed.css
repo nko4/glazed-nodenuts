@@ -32,7 +32,8 @@ some-lyrics {
 	left:0;
 }
 some-lyrics a-lyric.active {
-  text-shadow: 0px 0px 10px #F25C93;
+  color: #f79bbd;
+  text-shadow: 0px 0px 10px #d7115a;
 }
 some-lyrics a-lyric.retired {
   color: #6DCFDA;
@@ -43,5 +44,8 @@ some-lyrics a-lyric.retired {
 
 footer { 
   padding: 20px; 
-  background: rgba(255,255,255,.5); 
+  font-family: Chintzy;
+  font-size: 2em;
+  text-align: center;
+  color: #41CAD9;
 }
