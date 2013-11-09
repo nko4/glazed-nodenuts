@@ -118,9 +118,13 @@ only screen and ( max-width: 600px) {
     position: static;
     top: 0;
     right: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
   }
   .tv-knobs li {
 	display: inline-block;
+	margin: 20px 10px;
   }
   .tv-title {
 	position: static;
