@@ -10,10 +10,15 @@
 
   // Cache me some jQuery DOM.
   var dom = {
-    lyrics: $('some-lyrics'),
-    monitor: $('.tv-contents'),
-    songTitle: $('.tv-title')
+    refresh: function() {
+      this.lyrics = $('some-lyrics');
+      this.monitor = $('.tv-contents');
+      this.songTitle = $('.tv-title');
+    }
   };
+
+  // Refresh dat dom; hell yeah; work it.
+  dom.refresh();
 
   // Cache all templates used.
   var template = {
@@ -64,13 +69,21 @@
     // Maintain it like this for now.
     var index = 0;
 
-    // Start at the same time.
-    MIDI.loadPlugin(function () {
-      // this is the language we are running in
-      // this sets up the MIDI.Player and gets things going...
-      player = MIDI.Player;
-      MIDI.setVolume(0,9);
+    // Only initialize on the first run through.
+    if (!player) {
+      MIDI.loadPlugin(function () {
+        // this is the language we are running in
+        // this sets up the MIDI.Player and gets things going...
+        player = MIDI.Player;
+        MIDI.setVolume(0,9);
 
+        cont();
+      });
+    } else {
+      cont();
+    }
+
+    function cont() {
       player.timeWarp = 1; // speed the song is played back
 
       player.loadFile(song, function() {
@@ -147,7 +160,7 @@
 
         console.log(curPlayTime, elapsed, startPosition);
       }, 100);
-    });
+    }
   }
 
   function connectSocket() {
@@ -159,11 +172,16 @@
 
       // If we are on a totally different song now, change it.
       if (currentSongFile !== state.song) {
+        // Reset.
+        song = state.song;
+
         return playCurrentSong();
       }
 
       // Otherwise sychronize to the latest.
-      player.currentTime = state.position * 1000;
+      if (player) {
+        player.currentTime = state.position * 1000;
+      }
     });
   }
 
