@@ -2,6 +2,31 @@
 require('nko')('G-TTdL9lMtih7ZXl');
 
 var isProduction = (process.env.NODE_ENV === 'production');
+var express = require('express');
+var app = express()
+  , server = require('http').createServer(app)
+  , io = require('socket.io').listen(server);
+
+var port = (isProduction ? 80 : 8000);
+server.listen(port);
+console.log('Server running at http://0.0.0.0:' + port + '/');
+app.configure(function(){
+  app.use(express.static(__dirname + '/static'));
+});
+
+app.get('/', function (req, res) {
+  res.sendfile(__dirname + '/index.html');
+});
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
+/*
+
 var http = require('http');
 var port = (isProduction ? 80 : 8000);
 
@@ -24,3 +49,6 @@ http.createServer(function (req, res) {
 
   console.log('Server running at http://0.0.0.0:' + port + '/');
 });
+
+ */
+
