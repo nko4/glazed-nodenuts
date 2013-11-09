@@ -1,4 +1,5 @@
 window.lyrics = null;
+var $lyrics = $('some-lyrics');
 
 // Fetch lyrics.
 $.getJSON('/api/lyrics', function(lyrics) {
@@ -33,6 +34,10 @@ function simulatePlaying() {
 
     if ((lyrics[index].playTime/1000) <= elapsed) {
       $lyrics[index].classList.add('active');
+      
+      // get position of active lyric
+      var position = $($lyrics[index]).position();
+      scrollLyrics(position.top);
 
       if ($lyrics[index-1]) {
         $lyrics[index-1].classList.remove('active');
@@ -46,4 +51,8 @@ function simulatePlaying() {
   }, 100);
 
   //console.log(time, lyrics[0].playTime);
+}
+
+function scrollLyrics( yPos ) {
+  $lyrics.css({ 'top' : '-' + yPos + 'px' });
 }
