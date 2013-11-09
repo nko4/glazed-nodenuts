@@ -1,2 +1,52 @@
 /*** glazed nodenuts ***/
 
+@font-face { font-family: Chintzy; src: url('../assets/chintzy.ttf'); }
+@font-face { font-family: Novasolid; src: url('../assets/novasolid.ttf'); }
+
+body { 
+  background: #000 url('../assets/bg-sky.jpg') no-repeat 0 0; 
+}
+
+#main-content { 
+  padding: 20px; 
+}
+
+section.experiment { 
+  padding: 20px; 
+  background: rgba(255,255,255,.8); 
+}
+
+
+/** header **/
+
+header {
+	
+}
+
+
+/** the karaoke machine **/
+
+#karaoke-machine { 
+  width: 648px; 
+  height: 460px; 
+  margin: 20px; 
+  padding: 20px; 
+  background: transparent url('../assets/bg-screen.png') no-repeat 0 0; 
+  font-family: Chintzy; 
+  position: relative;
+}
+.monitor {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+
+/** footer **/
+
+footer { 
+  padding: 20px; 
+  background: rgba(255,255,255,.5); 
+}
