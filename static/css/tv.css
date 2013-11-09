@@ -1,10 +1,11 @@
 .tv {
   position: relative;
-  background-color: #F25C93;
+  background-color: #d7115a;
   width: 800px;
   height: 520px;
+  margin: 10px auto;
   border-radius: 10px;
-  box-shadow: 0px 0px 20px #F25C93;
+  box-shadow: 0px 0px 20px #d7115a;
 }
 .tv-contents {
   position: absolute;
@@ -13,7 +14,7 @@
   width: 100%;
   height: 75%;
   color: #fff;
-  font-size: 200%;
+  font-size: 300%;
   text-align: center;
   overflow: scroll;
 }
@@ -35,10 +36,10 @@
 .tv-screen:before {
   content: "";
   position: absolute;
-  top: 10%;
-  bottom: 10%;
-  right: -5%;
-  left: -5%;
+  top: 8%;
+  bottom: 8%;
+  right: -4%;
+  left: -4%;
   background: inherit;
   border-radius: 5% / 50%;
   border-left: 2px solid #333;
@@ -95,7 +96,7 @@
   bottom: 15px;
   left: 12px;
   width: 95%;
-  background-color: #1EA4D9;
+  background-color: #9240DD;
   padding: 10px 15px;
   margin-left: 3px;
   color: #fff;
