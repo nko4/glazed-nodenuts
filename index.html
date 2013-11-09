@@ -16,6 +16,11 @@
 </head>
 
 <body>
+  <script id="lyrics" type="whambamthankma'am">
+    <% lyrics.each(function(lyric) { %>
+      <a-lyric><%= lyric.text %></a-lyric>
+    <% }); %>
+  </script>
 
   <section id="main-content">
  
@@ -40,12 +45,10 @@
 					Woop Woop the Swoopy Swoop<br />
 					By Swooop Swopp
 				</header>
-				
-				<p>Easy Lover<br />
-					She'll get a hold on you believe it<br />
-					Like no other
-				</p>
-				
+
+        <some-lyrics>
+
+        </some-lyrics>
 			</article>
 		
 		</div>
@@ -70,6 +73,9 @@
 </section>
 
 
+<script src="/js/jquery-1.10.2.js"> </script>
+<script src="/js/lodash.js"> </script>
+<script src="/js/init.js"> </script>
 <script src="/js/connection.js"> </script>
 
 
