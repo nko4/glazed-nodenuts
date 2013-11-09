@@ -34,7 +34,7 @@ function simulatePlaying() {
     }
 
     // If the current lyric does not have a play time attribute, skip it.
-    if (!lyrics[index].playTime) {
+    if (!lyrics[index] || !lyrics[index].playTime) {
       index = index + 1;
       return;
     }
