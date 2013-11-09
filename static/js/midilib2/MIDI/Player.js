@@ -1,11 +1,11 @@
 /*
-	
+	-------------------------------------
 	MIDI.Player : 0.3
 	-------------------------------------
-	https://github.com/mudx/MIDI.js
+	https://github.com/mudcube/MIDI.js
 	-------------------------------------
-	requires jasmid
-	
+	#jasmid
+	-------------------------------------
 */
 
 if (typeof (MIDI) === "undefined") var MIDI = {};
@@ -56,23 +56,23 @@ root.clearAnimation = function() {
 
 root.setAnimation = function(config) {
 	var callback = (typeof(config) === "function") ? config : config.callback;
-	var delay = config.delay || 100;
+	var interval = config.interval || 30;
 	var currentTime = 0;
 	var tOurTime = 0;
 	var tTheirTime = 0;
 	//
 	root.clearAnimation();
-	root.interval = window.setInterval(function (){
+	root.interval = window.setInterval(function () {
 		if (root.endTime === 0) return;
 		if (root.playing) {
-			currentTime = (tTheirTime == root.currentTime) ? tOurTime-(new Date()).getTime() : 0;
+			currentTime = (tTheirTime === root.currentTime) ? tOurTime - (new Date).getTime() : 0;
 			if (root.currentTime === 0) {
 				currentTime = 0;
 			} else {
 				currentTime = root.currentTime - currentTime;
 			}
-			if (tTheirTime != root.currentTime) {
-				tOurTime = (new Date()).getTime();
+			if (tTheirTime !== root.currentTime) {
+				tOurTime = (new Date).getTime();
 				tTheirTime = root.currentTime;
 			}
 		} else { // paused
@@ -91,12 +91,12 @@ root.setAnimation = function(config) {
 			end: t2,
 			events: noteRegistrar
 		});
-	}, delay);
+	}, interval);
 };
 
 // helpers
 
-var loadMidiFile = function() { // reads midi into javascript array of events
+root.loadMidiFile = function() { // reads midi into javascript array of events
 	root.replayer = new Replayer(MidiFile(root.currentData), root.timeWarp);
 	root.data = root.replayer.getData();
 	root.endTime = getLength();
@@ -107,10 +107,11 @@ root.loadFile = function (file, callback) {
 	if (file.indexOf("base64,") !== -1) {
 		var data = window.atob(file.split(",")[1]);
 		root.currentData = data;
-		loadMidiFile();
+		root.loadMidiFile();
 		if (callback) callback(data);
 		return;
 	}
+	///
 	var fetch = new XMLHttpRequest();
 	fetch.open('GET', file);
 	fetch.overrideMimeType("text/plain; charset=x-user-defined");
@@ -123,9 +124,9 @@ root.loadFile = function (file, callback) {
 			for (var z = 0; z < mx; z++) {
 				ff[z] = scc(t.charCodeAt(z) & 255);
 			}
-			var data = window.atob(ff.join(""));
+			var data = ff.join("");
 			root.currentData = data;
-			loadMidiFile();
+			root.loadMidiFile();
 			if (callback) callback(data);
 		}
 	};
@@ -140,8 +141,7 @@ var startTime = 0; // to measure time elapse
 var noteRegistrar = {}; // get event for requested note
 var onMidiEvent = undefined; // listener callback
 var scheduleTracking = function (channel, note, currentTime, offset, message, velocity) {
-	var interval = window.setInterval(function () {
-		window.clearInterval(interval);
+	var interval = window.setTimeout(function () {
 		var data = {
 			channel: channel,
 			note: note,
@@ -198,7 +198,7 @@ var startAudio = function (currentTime, fromCache) {
 	var note;
 	var offset = 0;
 	var messages = 0;
-	var data = root.data;
+	var data = root.data;	
 	var ctx = getContext();
 	var length = data.length;
 	//
@@ -207,7 +207,7 @@ var startAudio = function (currentTime, fromCache) {
 	//
 	for (var n = 0; n < length && messages < 100; n++) {
 		queuedTime += data[n][1];
-		if (queuedTime <= currentTime) {
+		if (queuedTime < currentTime) {
 			offset = queuedTime;
 			continue;
 		}
@@ -232,7 +232,7 @@ var startAudio = function (currentTime, fromCache) {
 				eventQueue.push({
 					event: event,
 					source: MIDI.noteOff(channel, event.noteNumber, currentTime / 1000 + ctx.currentTime),
-					interval: scheduleTracking(channel, note, queuedTime, offset - 10, 128)
+					interval: scheduleTracking(channel, note, queuedTime, offset, 128)
 				});
 				break;
 			default:
