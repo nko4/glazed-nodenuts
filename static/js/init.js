@@ -1,5 +1,6 @@
 window.lyrics = null;
 var $lyrics = $('some-lyrics');
+var $monitor = $('.monitor');
 
 // Fetch lyrics.
 $.getJSON('/api/lyrics', function(lyrics) {
@@ -43,8 +44,9 @@ function simulatePlaying() {
       $lyrics[index].classList.add('active');
       
       // get position of active lyric
-      var position = $($lyrics[index]).position();
-      scrollLyrics(position.top);
+      var monitorPosition = $monitor.position()
+      var activePosition = $($lyrics[index]).position();
+      scrollLyrics(activePosition.top - monitorPosition.top);
 
       if ($lyrics[index-1]) {
         $lyrics[index-1].classList.remove('active');
