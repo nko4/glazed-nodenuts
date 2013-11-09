@@ -49,7 +49,7 @@ function simulatePlaying(song, startPosition) {
     // this sets up the MIDI.Player and gets things going...
     player = MIDI.Player;
 
-    player.timeWarp = 1; // speed the song is played back
+    player.timeWarp = 1 // speed the song is played back
     player.loadFile(song, function() {
       player.stop();
       player.currentTime = startPosition * 1000;
