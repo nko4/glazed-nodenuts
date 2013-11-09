@@ -57,13 +57,19 @@ function simulatePlaying(song, startPosition) {
     });
 
 
-    // Retrieve song meta data
-    for (var i = 0; i <= 100; i++ ) {
-      var event  = player.data[i][0].event;
-      if ( event.subtype == "trackName" ) {
-        console.log( '[' + i + ']' + event.text);
-      }
-    }
+   // Retrieve song meta data and put into array
+   window.songInfo = []
+   for (var i = 0; i <= 100; i++ ) {
+     var event  = player.data[i][0].event;	  
+     if ( event.type == 'meta' && event.text ) {
+      var metaText = event.text.split(""); 
+      if ( metaText[1] == 'T') {
+	     window.songInfo.push(event.text.substr(2, event.text.length -2));
+	  }
+     } 
+   }
+   
+   console.log(window.songInfo);
 
     player.addListener(function(data) {
 
