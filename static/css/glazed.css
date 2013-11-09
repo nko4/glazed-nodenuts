@@ -32,9 +32,10 @@ header {
   margin: 20px; 
   padding: 20px; 
   background: transparent url('../assets/bg-screen.png') no-repeat 0 0; 
-  font-family: Chintzy; 
+  font-family: Arial, sans-serif; 
   position: relative;
 }
+
 .monitor {
   width: 464px;
   height: 294px;
@@ -43,6 +44,14 @@ header {
   position: absolute;
   top: 55px;
   left: 54px;
+}
+
+.monitor header {
+  font-weight: bold; 
+}
+
+.monitor some-lyrics {
+  font-size: 1.2em;
 }
 
 
