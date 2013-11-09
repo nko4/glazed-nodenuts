@@ -74,6 +74,11 @@
         player.currentTime = startPosition * 1000;
         player.start();
       });
+      
+      // Retrieve song end time
+      var endTimeRaw = MIDI.Player.endTime;
+      var songMinutes = Math.floor(endTimeRaw/60000);
+      var songSeconds = Math.floor( (endTimeRaw/60000 - songMinutes) * 60 );
 
       // Retrieve song meta data and put into array
       var songArray = []
@@ -86,6 +91,9 @@
         }
         } 
       }
+      
+      songArray.push('Time: ' + songMinutes + ':' + songSeconds);
+    
       displaySongInfo( songArray );
      
       // set songArray to global in case needed later
