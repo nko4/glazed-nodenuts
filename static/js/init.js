@@ -28,7 +28,7 @@ function simulatePlaying() {
     var elapsed = (Date.now() - startTime)/1000;
 
     // Bail out if out of lyrics.
-    if (!lyrics.length) {
+    if (index >= lyrics.length) {
       return window.clearInterval(poller);
     }
 
