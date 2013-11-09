@@ -16,7 +16,7 @@
   color: #fff;
   font-size: 300%;
   text-align: center;
-  overflow: scroll;
+  overflow: hidden;
 }
 .tv-screen {
   position: relative;
