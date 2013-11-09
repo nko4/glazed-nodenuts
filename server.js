@@ -30,5 +30,5 @@ app.get('/', function (req, res) {
 io.sockets.on('connection', function (socket) {
   setInterval(function() {
     socket.emit('pulse', playlist.state());
-  }, 1000);
+  }, 500);
 });
