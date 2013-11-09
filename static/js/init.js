@@ -2,25 +2,37 @@ window.lyrics = null;
 var $lyrics = $('some-lyrics');
 var $monitor = $('.tv-contents');
 
-// Fetch lyrics.
-$.getJSON('/api/lyrics/youreallygotme.kar', function(lyrics) {
-  var template = _.template($('#lyrics').html());
+// Promise me to callback
+// Fetch State.
+$.getJSON('/api/playlist/state', function(state) {
+  console.log(state);
+  var currentSongFile = state.song;
+  var startPosition = state.position;
+  // if everything is going okay
+  if (currentSongFile) {
+    // Fetch lyrics.
+    $.getJSON('/api/lyrics/' + currentSongFile, function(lyrics) {
+      var template = _.template($('#lyrics').html());
 
-  // Globalize.
-  window.lyrics = lyrics;
+      // Globalize.
+      window.lyrics = lyrics;
 
-  $('some-lyrics').html(template({ lyrics: _(lyrics) }));
+      $('some-lyrics').html(template({ lyrics: _(lyrics) }));
 
-  //simulatePlaying();
+      //simulatePlaying();
 
-  $.getJSON('/api/songs/youreallygotme.kar', function(song) {
+      $.getJSON('/api/songs/' + currentSongFile, function(song) {
 
-    simulatePlaying(song);
-  });
-  
+        simulatePlaying(song, startPosition);
+      });
+
+    });
+  }
+
+
 });
 
-function simulatePlaying(song) {
+function simulatePlaying(song, startPosition) {
   var startTime = Date.now();
   var start = Number(lyrics[0].playTime);
   var stop = Number(lyrics[lyrics.length-1].playTime);
@@ -35,13 +47,16 @@ function simulatePlaying(song) {
   MIDI.loadPlugin(function () {
     // this is the language we are running in
     // this sets up the MIDI.Player and gets things going...
-    var player = MIDI.Player;   
-    
-    // TODO: I don't think this works, something about volume has to be changed for each channel.
-    MIDI.setVolume(0.01);
+    player = MIDI.Player;
+
     player.timeWarp = 1; // speed the song is played back
-    player.loadFile(song, player.start);
-    
+    player.loadFile(song, function() {
+      player.stop();
+      player.currentTime = startPosition * 1000;
+      player.start();
+    });
+
+
    // Retrieve song meta data
    for (var i = 0; i <= 100; i++ ) {
      var event  = player.data[i][0].event;	  
