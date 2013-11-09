@@ -32,6 +32,13 @@ function simulatePlaying() {
       return window.clearInterval(poller);
     }
 
+    // If the current lyric does not have a play time attribute, skip it.
+    if (!lyrics[index].playTime) {
+      index = index + 1;
+      return;
+    }
+
+    // Compare the timing and correctly.
     if ((lyrics[index].playTime/1000) <= elapsed) {
       $lyrics[index].classList.add('active');
       
@@ -49,8 +56,6 @@ function simulatePlaying() {
 
     console.log(lyrics[index].playTime/1000, elapsed);
   }, 100);
-
-  //console.log(time, lyrics[0].playTime);
 }
 
 function scrollLyrics( yPos ) {
