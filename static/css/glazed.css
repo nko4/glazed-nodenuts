@@ -36,11 +36,12 @@ header {
   position: relative;
 }
 .monitor {
-  width: 400px;
-  height: 300px;
+  width: 464px;
+  height: 294px;
+  padding: 20px; 
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 55px;
+  left: 54px;
 }
 
 
