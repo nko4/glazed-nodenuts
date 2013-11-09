@@ -87,7 +87,7 @@ function simulatePlaying(song) {
         index = index + 1;
       }
 
-      console.log(lyrics[index].playTime/1000, elapsed);
+      //console.log(lyrics[index].playTime/1000, elapsed);
     }, 100);
 
   });

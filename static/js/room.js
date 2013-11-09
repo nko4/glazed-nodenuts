@@ -173,7 +173,7 @@ window.Room = (function() {
     opts = opts || {};
     this.Person = opts.Person || window.Person;
     this.element = opts.element || $('<ul/>');
-    this.element.addClass('room');
+    this.element.addClass('clearfix');
     this.prefix = 'person';
     this._people = Object.create(null);
 
@@ -231,7 +231,7 @@ var dude = new Person({ name: 'dude' });
 controls.choices(dude);
 room.add(dude);
 
-$('body').prepend(room.element);
+$('#people').append(room.element);
 
 // var peeps = room.people;
 // room.remove(1234);
