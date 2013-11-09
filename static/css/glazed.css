@@ -21,13 +21,18 @@ section.experiment {
 }
 
 @-webkit-keyframes rainbow { 
-  0% { background-color: red; }
+  10% { background-color: red; }
   20% { background-color: orange; } 
   40% { background-color: yellow; } 
   60% { background-color: green; } 
   80% { background-color: blue; } 
   100% { background-color: purple; }
-};
+}
+
+@-webkit-keyframes glowpulse {
+  0% { text-shadow: 0px 0px 3px #d7115a; }
+  100% { text-shadow: 0px 0px 15px #d7115a; }
+}
 
 /** header **/
 
@@ -78,7 +83,8 @@ some-lyrics {
 }
 some-lyrics a-lyric.active {
   color: #f79bbd;
-  text-shadow: 0px 0px 10px #d7115a;
+  text-shadow: 0px 0px 3px #d7115a;
+  -webkit-animation: glowpulse 1s infinite alternate;
 }
 some-lyrics a-lyric.retired {
   color: #6DCFDA;
