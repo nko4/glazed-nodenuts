@@ -3,9 +3,9 @@ require('nko')('G-TTdL9lMtih7ZXl');
 
 var isProduction = (process.env.NODE_ENV === 'production');
 var express = require('express');
-var app = express()
-  , server = require('http').createServer(app)
-  , io = require('socket.io').listen(server);
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
 
 var port = (isProduction ? 80 : 8000);
 server.listen(port);
@@ -22,9 +22,12 @@ app.get('/', function (req, res) {
 
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
+
   socket.on('my other event', function (data) {
     console.log(data);
   });
+
+  //socket.emit('pulse', { timestamp: 
 });
 
 /*
