@@ -38,7 +38,7 @@ function simulatePlaying() {
 
       // Bail out if out of lyrics.
       if (index >= lyrics.length) {
-        return window.clearInterval(poller);
+        return;
       }
 
       // If the current lyric does not have a play time attribute, skip it.
