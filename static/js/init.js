@@ -25,40 +25,50 @@ function simulatePlaying() {
   // Maintain it like this for now.
   var index = 0;
 
-  var poller = window.setInterval(function() {
-    var elapsed = (Date.now() - startTime)/1000;
+  // Start at the same time.
+  MIDI.loadPlugin(function () {
+    // this is the language we are running in
+    // this sets up the MIDI.Player and gets things going...
+    player = MIDI.Player;
+    player.timeWarp = 1; // speed the song is played back
+    player.loadFile(song[1], player.start);
 
-    // Bail out if out of lyrics.
-    if (index >= lyrics.length) {
-      return window.clearInterval(poller);
-    }
+    player.addListener(function(data) {
+      var elapsed = data.now/1000;
 
-    // If the current lyric does not have a play time attribute, skip it.
-    if (!lyrics[index] || !lyrics[index].playTime) {
-      index = index + 1;
-      return;
-    }
-
-    // Compare the timing and correctly.
-    if ((lyrics[index].playTime/1000) <= elapsed) {
-      $lyrics[index].classList.add('active');
-      
-      // get position of active lyric
-      var monitorPosition = $monitor.position()
-      var activePosition = $($lyrics[index]).position();
-      scrollLyrics(activePosition.top - monitorPosition.top);
-
-      if ($lyrics[index-1]) {
-        $lyrics[index-1].classList.remove('active');
-        $lyrics[index-1].classList.add('retired');
+      // Bail out if out of lyrics.
+      if (index >= lyrics.length) {
+        return window.clearInterval(poller);
       }
 
-      // Just like papa crock taught me!
-      index = index + 1;
-    }
+      // If the current lyric does not have a play time attribute, skip it.
+      if (!lyrics[index] || !lyrics[index].playTime) {
+        index = index + 1;
+        return;
+      }
 
-    console.log(lyrics[index].playTime/1000, elapsed);
-  }, 100);
+      // Compare the timing and correctly.
+      if ((lyrics[index].playTime/1000) <= elapsed) {
+        $lyrics[index].classList.add('active');
+        
+        // get position of active lyric
+        var monitorPosition = $monitor.position()
+        var activePosition = $($lyrics[index]).position();
+        scrollLyrics(activePosition.top - monitorPosition.top);
+
+        if ($lyrics[index-1]) {
+          $lyrics[index-1].classList.remove('active');
+          $lyrics[index-1].classList.add('retired');
+        }
+
+        // Just like papa crock taught me!
+        index = index + 1;
+      }
+
+      console.log(lyrics[index].playTime/1000, elapsed);
+    }, 100);
+
+  });
 }
 
 function scrollLyrics( yPos ) {
