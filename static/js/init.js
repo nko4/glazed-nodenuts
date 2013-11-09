@@ -35,7 +35,8 @@ function simulatePlaying(song) {
   MIDI.loadPlugin(function () {
     // this is the language we are running in
     // this sets up the MIDI.Player and gets things going...
-    player = MIDI.Player;
+    var player = MIDI.Player;
+    MIDI.setVolume(0.01);
     player.timeWarp = 1; // speed the song is played back
     player.loadFile(song, player.start);
 
