@@ -42,11 +42,15 @@ function simulatePlaying(song) {
     player.timeWarp = 1; // speed the song is played back
     player.loadFile(song, player.start);
     
-   // Retrieve song meta data
+   // Retrieve song meta data 
+   window.songInfo = []
    for (var i = 0; i <= 100; i++ ) {
      var event  = player.data[i][0].event;	  
-     if ( event.subtype == "trackName" ) {
-	     console.log( '[' + i + ']' + event.text);
+     if ( event.type == 'meta' && event.text ) {
+      var metaText = event.text.split(""); 
+      if ( metaText[1] == 'T') {
+	     window.songInfo.push(event.text.substr(2, event.text.length -2));
+	  }
      } 
    }
 
