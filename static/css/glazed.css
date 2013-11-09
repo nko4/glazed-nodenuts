@@ -24,57 +24,6 @@ header {
 	
 }
 
-
-/** the karaoke machine **/
-
-#karaoke-machine { 
-  width: 648px; 
-  height: 460px; 
-  margin: 20px auto; 
-  padding: 20px; 
-  background: transparent url('../assets/bg-screen.png') no-repeat 0 0; 
-  font-family: Arial, sans-serif; 
-  position: relative;
-}
-
-.monitor {
-  width: 464px;
-  height: 294px;
-  overflow: scroll;
-  padding: 20px; 
-  position: absolute;
-  top: 55px;
-  left: 54px;
-}
-
-.monitor header {
-  font-weight: bold; 
-}
-
-.monitor some-lyrics {
-  font-size: 3.2em;
-}
-
-.monitor some-lyrics a-lyric.active {
-  color: #a0a;
-}
-.monitor some-lyrics a-lyric.retired {
-  color: #999;
-}
-
-.song {
-  position: relative;
-}
-
-some-lyrics {
-  position: absolute;
-}
-
-.controls {
-	
-}
-
-
 /** footer **/
 
 footer { 
