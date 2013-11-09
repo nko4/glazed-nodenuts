@@ -57,16 +57,16 @@ function simulatePlaying(song, startPosition) {
     });
 
 
-   // Retrieve song meta data
-   for (var i = 0; i <= 100; i++ ) {
-     var event  = player.data[i][0].event;	  
-     if ( event.subtype == "trackName" ) {
-	     console.log( '[' + i + ']' + event.text);
-     } 
-   }
+    // Retrieve song meta data
+    for (var i = 0; i <= 100; i++ ) {
+      var event  = player.data[i][0].event;
+      if ( event.subtype == "trackName" ) {
+        console.log( '[' + i + ']' + event.text);
+      }
+    }
 
     player.addListener(function(data) {
-    	   
+
       var elapsed = data.now/1000;
 
       // Bail out if out of lyrics.
@@ -83,7 +83,7 @@ function simulatePlaying(song, startPosition) {
       // Compare the timing and correctly.
       if ((lyrics[index].playTime/1000) <= elapsed) {
         $lyrics[index].classList.add('active');
-        
+
         // get position of active lyric
         var monitorPosition = $monitor.position()
         var activePosition = $($lyrics[index]).position();
