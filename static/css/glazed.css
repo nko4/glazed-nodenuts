@@ -4,7 +4,7 @@
 @font-face { font-family: Novasolid; src: url('../assets/novasolid.ttf'); }
 
 body { 
-  background: #000 url('../assets/bg-sky.jpg') no-repeat 0 0; 
+  background: #000 url('../assets/bg-sky.jpg') no-repeat 0 0;
 }
 
 #main-content { 
@@ -38,6 +38,7 @@ header {
 .monitor {
   width: 464px;
   height: 294px;
+  overflow: hidden;
   padding: 20px; 
   position: absolute;
   top: 55px;
