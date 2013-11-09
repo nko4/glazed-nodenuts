@@ -1,0 +1,110 @@
+.tv {
+  position: relative;
+  background-color: #F25C93;
+  width: 800px;
+  height: 520px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px #F25C93;
+}
+.tv-contents {
+  position: absolute;
+  top: 45px;
+  left: 0px;
+  width: 100%;
+  height: 75%;
+  color: #fff;
+  font-size: 200%;
+  text-align: center;
+  overflow: scroll;
+}
+some-lyrics a-lyric.active {
+  text-shadow: 0px 0px 10px #F25C93;
+}
+some-lyrics a-lyric.retired {
+  color: #6DCFDA;
+}
+.tv-screen {
+  position: relative;
+  top: 15px;
+  left: 30px;
+  width: 75%;
+  height: 78%;
+  margin: 20px 10px;
+  background: #41CAD9;
+  border-radius: 50% / 10%;
+  color: white;
+  text-align: center;
+  text-indent: .1em;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+}
+.tv-screen:before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  right: -5%;
+  left: -5%;
+  background: inherit;
+  border-radius: 5% / 50%;
+  border-left: 2px solid #333;
+  border-right: 2px solid #333;
+}
+.tv-knobs {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.tv-knobs li {
+  list-style: none;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+  border-radius: 120px;
+  background-color: #F2A679;
+  box-shadow: inset 0 0 10px #000000;
+}
+.tv-control, .tv-knobs .tv-label {
+  display: block;
+  width: 80%;
+  height: 15px;
+  background-color: #F2D857;
+  -webkit-transform: translate(6px, 22px) rotate(90deg);
+  border-radius: 10px;
+}
+.tv-knobs li:first-child .tv-control {
+  -webkit-transform: translate(6px, 22px) rotate(45deg);
+}
+.tv-knobs li:hover .tv-control {
+  -webkit-transform: translate(6px, 22px) rotate(180deg);
+}
+.tv-knobs li .tv-label {
+  width: 300px;
+  height: 25px;
+  position: relative;
+  right: -100px;
+  color: #ddd;
+  padding: 2px 8px;
+  cursor: pointer;
+  opacity: 0;
+  background-color: rgba(242, 92, 147, 0.5);
+  -webkit-transform: translate(0px, 0px) rotate(0deg);
+  border: 0px solid #000;
+}
+.tv-knobs li:hover .tv-label {
+  color: #fff;
+  opacity: 1;
+  -webkit-transform: translate(0px, 0px) rotate(0deg);
+}
+.tv-title {
+  position: absolute;
+  bottom: 15px;
+  left: 12px;
+  width: 95%;
+  background-color: #1EA4D9;
+  padding: 10px 15px;
+  margin-left: 3px;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px #000000;
+}
