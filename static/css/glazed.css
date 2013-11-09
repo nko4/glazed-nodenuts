@@ -5,6 +5,7 @@
 
 body { 
   background: #000 url('../assets/bg-sky.jpg') no-repeat 0 0;
+  background-size: 100% auto;
 }
 
 #main-content { 
@@ -29,7 +30,7 @@ header {
 #karaoke-machine { 
   width: 648px; 
   height: 460px; 
-  margin: 20px; 
+  margin: 20px auto; 
   padding: 20px; 
   background: transparent url('../assets/bg-screen.png') no-repeat 0 0; 
   font-family: Arial, sans-serif; 
@@ -39,7 +40,7 @@ header {
 .monitor {
   width: 464px;
   height: 294px;
-  overflow: hidden;
+  overflow: scroll;
   padding: 20px; 
   position: absolute;
   top: 55px;
@@ -56,6 +57,18 @@ header {
 
 .monitor some-lyrics a-lyric.active {
   color: #FF0;
+}
+
+.song {
+  position: relative;
+}
+
+some-lyrics {
+  position: absolute;
+}
+
+.controls {
+	
 }
 
 
