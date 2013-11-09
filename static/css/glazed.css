@@ -24,9 +24,28 @@ header {
 	
 }
 
+
+/** karaoke machine contents **/
+
+some-lyrics {
+	position: absolute; 
+	left:0;
+}
+some-lyrics a-lyric.active {
+  color: #f79bbd;
+  text-shadow: 0px 0px 10px #d7115a;
+}
+some-lyrics a-lyric.retired {
+  color: #6DCFDA;
+}
+
+
 /** footer **/
 
 footer { 
   padding: 20px; 
-  background: rgba(255,255,255,.5); 
+  font-family: Chintzy;
+  font-size: 2em;
+  text-align: center;
+  color: #41CAD9;
 }
