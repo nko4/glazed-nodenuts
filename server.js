@@ -7,24 +7,13 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
-var port = (isProduction ? 80 : 8000);
+// Used to send pulse information.
+var playlist = require('./lib/playlist');
 
-// here are the songs that we are going to loop
-var playlist = [
-  'crocodilerock.kar',
-  'dancingqueen.kar',
-  'dreamlover.kar',
-  'eott.kar',
-  'ghostbusters.kar',
-  'kokomo.kar',
-  'likeavirgin.kar',
-  'smellsliketeen.kar',
-  'takeonme.kar',
-  'twoprinc.kar',
-  'wearechamps.kar',
-  'whenicomearound.kar',
-  'youreallygotme.kar'
-];
+// Start the playlist!
+playlist.start();
+
+var port = (isProduction ? 80 : 8000);
 
 server.listen(port);
 console.log('Server running at http://0.0.0.0:' + port + '/');
