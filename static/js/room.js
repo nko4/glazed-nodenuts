@@ -108,11 +108,11 @@ window.Controls = (function() {
   Controls.prototype.onWantToSing = function(person) {
     console.log('I want to sing')
     person.status = 'singing';
-    connection.extra = {
+    this.connection.extra = {
       'session-name': 'Anonymous',
       person: person.toData(),
     };
-    connection.open();
+    this.connection.open();
     this.choices(person);
   };
 
@@ -120,11 +120,11 @@ window.Controls = (function() {
   Controls.prototype.onWantToClap = function(person) {
     console.log('I want to clap')
     person.status = 'clapping';
-    connection.extra = {
+    this.connection.extra = {
       'session-name': 'Anonymous',
       person: person.toData(),
     };
-    connection.open();
+    this.connection.open();
     this.choices(person);
   };
 
