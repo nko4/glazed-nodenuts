@@ -3,7 +3,7 @@ var $lyrics = $('some-lyrics');
 var $monitor = $('.tv-contents');
 
 // Fetch lyrics.
-$.getJSON('/api/lyrics/ghostbusters.kar', function(lyrics) {
+$.getJSON('/api/lyrics/wearechamps.kar', function(lyrics) {
   var template = _.template($('#lyrics').html());
 
   // Globalize.
@@ -13,7 +13,7 @@ $.getJSON('/api/lyrics/ghostbusters.kar', function(lyrics) {
 
   //simulatePlaying();
 
-  $.getJSON('/api/songs/ghostbusters.kar', function(song) {
+  $.getJSON('/api/songs/wearechamps.kar', function(song) {
 
     simulatePlaying(song);
   });
