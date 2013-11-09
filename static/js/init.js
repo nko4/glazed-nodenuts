@@ -168,8 +168,6 @@
     var socket = io.connect(url);
 
     socket.on('pulse', function(state) {
-      console.clear();
-
       // If we are on a totally different song now, change it.
       if (currentSongFile !== state.song) {
         // Reset.
