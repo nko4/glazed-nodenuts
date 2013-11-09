@@ -42,7 +42,7 @@ function simulatePlaying(song) {
     player.timeWarp = 1; // speed the song is played back
     player.loadFile(song, player.start);
     
-   // Retrieve song meta data 
+   // Retrieve song meta data and put into array
    window.songInfo = []
    for (var i = 0; i <= 100; i++ ) {
      var event  = player.data[i][0].event;	  
