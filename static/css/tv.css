@@ -1,12 +1,4 @@
-.tv {
-  position: relative;
-  background-color: #d7115a;
-  width: 800px;
-  height: 520px;
-  margin: 10px auto;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px #d7115a;
-}
+
 .tv-contents {
   position: absolute;
   top: 45px;
@@ -23,7 +15,7 @@
   top: 15px;
   left: 30px;
   width: 75%;
-  height: 78%;
+  height: 415px;
   margin: 20px 10px;
   background: #41CAD9;
   border-radius: 50% / 10%;
