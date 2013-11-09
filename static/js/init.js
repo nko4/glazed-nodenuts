@@ -3,7 +3,7 @@ var $lyrics = $('some-lyrics');
 var $monitor = $('.tv-contents');
 
 // Fetch lyrics.
-$.getJSON('/api/lyrics/wearechamps.kar', function(lyrics) {
+$.getJSON('/api/lyrics/youreallygotme.kar', function(lyrics) {
   var template = _.template($('#lyrics').html());
 
   // Globalize.
@@ -13,7 +13,7 @@ $.getJSON('/api/lyrics/wearechamps.kar', function(lyrics) {
 
   //simulatePlaying();
 
-  $.getJSON('/api/songs/wearechamps.kar', function(song) {
+  $.getJSON('/api/songs/youreallygotme.kar', function(song) {
 
     simulatePlaying(song);
   });
@@ -36,6 +36,7 @@ function simulatePlaying(song) {
     // this is the language we are running in
     // this sets up the MIDI.Player and gets things going...
     var player = MIDI.Player;
+    // TODO: I don't think this works, something about volume has to be changed for each channel.
     MIDI.setVolume(0.01);
     player.timeWarp = 1; // speed the song is played back
     player.loadFile(song, player.start);
