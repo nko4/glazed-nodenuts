@@ -56,7 +56,10 @@ header {
 }
 
 .monitor some-lyrics a-lyric.active {
-  color: #FF0;
+  color: #a0a;
+}
+.monitor some-lyrics a-lyric.retired {
+  color: #999;
 }
 
 .song {
