@@ -14,7 +14,7 @@ app.configure(function(){
   app.use(express.static(__dirname + '/static'));
 });
 
-app.use('/api', require('./api'));
+app.use('/api', require('./lib/api'));
 
 app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
