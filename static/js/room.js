@@ -108,11 +108,11 @@ window.Controls = (function() {
   Controls.prototype.onWantToSing = function(person) {
     console.log('I want to sing')
     person.status = 'singing';
-    connection.extra = {
+    this.connection.extra = {
       'session-name': 'Anonymous',
       person: person.toData(),
     };
-    connection.open();
+    this.connection.open();
     this.choices(person);
   };
 
@@ -120,11 +120,11 @@ window.Controls = (function() {
   Controls.prototype.onWantToClap = function(person) {
     console.log('I want to clap')
     person.status = 'clapping';
-    connection.extra = {
+    this.connection.extra = {
       'session-name': 'Anonymous',
       person: person.toData(),
     };
-    connection.open();
+    this.connection.open();
     this.choices(person);
   };
 
@@ -173,7 +173,7 @@ window.Room = (function() {
     opts = opts || {};
     this.Person = opts.Person || window.Person;
     this.element = opts.element || $('<ul/>');
-    this.element.addClass('room');
+    this.element.addClass('clearfix');
     this.prefix = 'person';
     this._people = Object.create(null);
 
@@ -231,7 +231,7 @@ var dude = new Person({ name: 'dude' });
 controls.choices(dude);
 room.add(dude);
 
-$('body').prepend(room.element);
+$('#people').append(room.element);
 
 // var peeps = room.people;
 // room.remove(1234);
