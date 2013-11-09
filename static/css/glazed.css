@@ -54,6 +54,10 @@ header {
   font-size: 3.2em;
 }
 
+.monitor some-lyrics a-lyric.active {
+  color: #FF0;
+}
+
 
 /** footer **/
 

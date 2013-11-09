@@ -8,4 +8,12 @@ $.getJSON('/api/lyrics', function(lyrics) {
   window.lyrics = lyrics;
 
   $("some-lyrics").html(template({ lyrics: _(lyrics) }));
+
+  simulatePlaying();
 });
+
+function simulatePlaying() {
+  var time = +new Date();
+
+  console.log(time);
+}
