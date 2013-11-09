@@ -50,6 +50,7 @@ function simulatePlaying() {
 
       if ($lyrics[index-1]) {
         $lyrics[index-1].classList.remove('active');
+        $lyrics[index-1].classList.add('retired');
       }
 
       // Just like papa crock taught me!
