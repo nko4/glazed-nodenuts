@@ -24,6 +24,21 @@ header {
 	
 }
 
+
+/** karaoke machine contents **/
+
+some-lyrics {
+	position: absolute; 
+	left:0;
+}
+some-lyrics a-lyric.active {
+  text-shadow: 0px 0px 10px #F25C93;
+}
+some-lyrics a-lyric.retired {
+  color: #6DCFDA;
+}
+
+
 /** footer **/
 
 footer { 
