@@ -11,7 +11,7 @@ body {
 #main-content { 
   width: 100%;
   max-width: 800px;
-  padding: 10px 20px; 
+  padding: 5px; 
   margin: 0 auto;
 }
 
@@ -105,6 +105,9 @@ footer {
 
 @media 
 only screen and ( max-width: 600px) {
+  header h1 {
+	font-size: 3em;
+  }
   #vote-button {
 	position: static;
 	display: block;
