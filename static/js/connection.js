@@ -3,6 +3,8 @@
 // MIT License   - https://www.webrtc-experiment.com/licence/
 // Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/RTCMultiConnection
 
+var context = new AudioContext();
+
 // disable rtc logging
 window.skipRTCMultiConnectionLogs = true;
 
@@ -58,7 +60,6 @@ function createUser(e) {
   audiosContainer.insertBefore(userEl.get(0), audiosContainer.firstChild);
 
   var clap = new Clap();
-  var context = new AudioContext();
   var node = clap.detect(context.createMediaStreamSource(e.stream), context, function(err, average) {
     userEl.get(0).style.backgroundColor = 'hsl(170, ' + average + '%, 50%)';
   });
