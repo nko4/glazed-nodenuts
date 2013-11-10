@@ -1,25 +1,12 @@
 /*** glazed nodenuts ***/
 
+h1, h2, h3, h4, h5 { margin: 0;}
+header, footer, section { display: block; }
+* {box-sizing: border-box;}
+a { text-decoration: none; }
+
 @font-face { font-family: Chintzy; src: url('../assets/chintzy.ttf'); }
 @font-face { font-family: Novasolid; src: url('../assets/novasolid.ttf'); }
-
-body { 
-  background: #000 url('../assets/bg-sky.jpg') no-repeat 0 0;
-  background-size: 100% auto;
-}
-
-#main-content { 
-  width: 100%;
-  max-width: 800px;
-  padding: 5px; 
-  margin: 0 auto;
-}
-
-section.experiment { 
-  padding: 20px; 
-  background: rgba(255,255,255,.8); 
-}
-
 @-webkit-keyframes rainbow { 
   10% { background-color: red; }
   20% { background-color: orange; } 
@@ -28,12 +15,10 @@ section.experiment {
   80% { background-color: #41CAD9; } 
   100% { background-color: #f44df4; }
 }
-
 @-webkit-keyframes glowpulse {
   0% { text-shadow: 0px 0px 3px #d7115a; }
   100% { text-shadow: 0px 0px 15px #d7115a; }
 }
-
 @-webkit-keyframes rainbowBorder {
   10% { border-color: red; }
   20% { border-color: orange; } 
@@ -41,6 +26,20 @@ section.experiment {
   60% { border-color: green; } 
   80% { border-color: blue; } 
   100% { border-color: purple; }
+}
+
+/** page structure **/
+body { 
+  background: #000 url('../assets/bg-sky.jpg') no-repeat 0 0;
+  background-size: 100% auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+#main-content { 
+  width: 100%;
+  max-width: 800px;
+  padding: 5px; 
+  margin: 0 auto;
 }
 
 /** header **/
@@ -103,7 +102,8 @@ a.tweet {
   border-radius: 10px;
 }
 
-/** karaoke machine contents **/
+
+/** karaoke machine - css tv in tv.css **/
 
 #karaoke-machine {
   width: 100%;
@@ -113,7 +113,6 @@ a.tweet {
   background-color: #d7115a;
   box-shadow: 0px 0px 20px #d7115a;
   border-radius: 10px;
-  height: 100%;
   margin: 0 auto 10px;
   position: relative;
   top: -20px;
@@ -131,40 +130,9 @@ some-lyrics a-lyric.active {
 some-lyrics a-lyric.retired {
   color: #6DCFDA;
 }
-.volume-range {
-  width: 60px;
-  margin: 30px 20px;
-}
-.volume-range label {
-  display: block;
-  font-weight: normal;
-  color:#000;
-  font-family: monospace;
-  text-align: center
-}
-.volume-range input {
-  width: 100%;
-}
-progress {
-  width: 90%;
-  background-color: #f3f3f3;
-  border: 0;
-  height: 18px;
-}
-progress::-webkit-progress-bar {
-  background-color: #f3f3f3;
-  box-shadow: 0 0 5px #000 inset;
-}
-progress::-moz-progress-bar {
-  background-color: #f3f3f3;
-  box-shadow: 0 0 5px #000 inset;
-}
-progress::-webkit-progress-value {
-  background-color: #20d320;
-  box-shadow: 0 0 5px #000 inset;
-}
 
-/** user **/
+
+/** Room & Users  **/
 #webrtc-container {
   margin: 20px;
   text-align: center;
@@ -180,22 +148,23 @@ progress::-webkit-progress-value {
   font-size: .5em;
   font-style: italic;
 }
+#audios-container {
+  padding: 10px 0;
+}
 .user {
   width: 100px;
   height: 100px;
+  display: inline-block;
   padding: 3px;
+  margin: 3px;
   border: 1px solid #333;
-
+  background-color: hsl(0, 0%, 50%);
   background-image: linear-gradient(
     rgba(255,255,255,0.2),
     rgba(0,0,0,0.2)
   );
-  background-color: hsl(0, 0%, 50%);
-
   color: white;
   cursor: pointer;
-  margin: 3px;
-  display: inline-block;
 }
 .user.muted {
   opacity: 0.2;
@@ -204,7 +173,6 @@ progress::-webkit-progress-value {
 /** footer **/
 
 footer { 
-  padding: 20px; 
   text-align: center;
   color: #41CAD9;
   font-size: 1.2em;
@@ -220,8 +188,8 @@ footer a {
   color: #1fdc1f;
 }
 
-/** ~*responsive lyfe*~ **/
 
+/** ~*responsive lyfe*~ **/
 @media 
 only screen and ( max-width: 600px) {
 
