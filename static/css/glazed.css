@@ -167,6 +167,7 @@ progress::-webkit-progress-value {
 /** user **/
 #webrtc-container {
   margin: 20px;
+  text-align: center;
 }
 #webrtc-container h4 {
   font-size: 2em;
@@ -183,7 +184,6 @@ progress::-webkit-progress-value {
   width: 100px;
   height: 100px;
   padding: 3px;
-  border-radius: 5px;
   border: 1px solid #333;
 
   background-image: linear-gradient(
@@ -194,8 +194,8 @@ progress::-webkit-progress-value {
 
   color: white;
   cursor: pointer;
-  float: left;
-  margin-right: 5px;
+  margin: 3px;
+  display: inline-block;
 }
 .user.muted {
   opacity: 0.2;
