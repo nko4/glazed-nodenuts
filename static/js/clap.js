@@ -6,8 +6,8 @@ window.Clap = (function(exp) {
     this.samples = opts.samples || 128;
   }
 
-  Clap.prototype.detect = function(source, context, cb) {
-    var analyser = context.createAnalyser();
+  Clap.prototype.detect = function(source, ctx, cb) {
+    var analyser = ctx.createAnalyser();
     analyser.fftSize = this.samples;
     analyser.smoothingTimeConstant = 0.3;
 
@@ -20,20 +20,22 @@ window.Clap = (function(exp) {
       return values / length;
     }
 
-    var node = context.createJavaScriptNode(2048, 1, 1);
-    node.onaudioprocess = function() {
+    var node = ctx.createJavaScriptNode(2048, 1, 1);
+    // onaudioprocess isnt working, it dies after awhile, just poll it
+    //node.onaudioprocess = function() {
+    setInterval(function() {
       var array = new Uint8Array(analyser.frequencyBinCount);
       analyser.getByteFrequencyData(array);
       cb(null, getAverageVolume(array));
-    };
+    }, 100);
 
     source.connect(analyser);
     analyser.connect(node);
     return node;
   };
 
-  Clap.prototype.visual = function(source, context, cb) {
-    var node = this.detect(source, context, function(err, avg) {
+  Clap.prototype.visual = function(source, ctx, cb) {
+    var node = this.detect(source, ctx, function(err, avg) {
       // TODO: write something to handle the visualization here
     });
     return node;
