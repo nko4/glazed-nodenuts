@@ -7,6 +7,8 @@
   var startPosition = null;
   var player = null;
   var song = null;
+  var VOTE_COUNT = 0;
+  var CLAP_COUNT = 0;
 
   // Cache me some jQuery DOM.
   var dom = {
@@ -185,9 +187,13 @@
       var left = Math.ceil(whole - (whole * (0.5+(part/whole))));
 
       // Vote.
-      dom.voteSkip.text(left);
+      if (left !== VOTE_COUNT) {
+        VOTE_COUNT = left;
+        dom.voteSkip.text(left);
+      }
       var claps = state.claps;
-      if (claps) {
+      if (claps && CLAP_COUNT !== claps) {
+        CLAP_COUNT = claps;
         dom.clapCount.text(claps);
       }
       //console.log(state);

@@ -13,6 +13,12 @@ var sessionStarted = false;
 connection.session = {
   audio: true
 };
+connection.extra = {
+  'session-name': 'Anonymous'
+};
+connection.bandwidth = {
+  audio: 10
+};
 
 
 var startBtn = document.getElementById('setup-new-conference');
@@ -95,36 +101,20 @@ connection.onerror = function(e) {
   console.log(e);
 };
 
-var sessions = { };
-var audiosContainer = document.getElementById('audios-container') || document.body;
-
-startBtn.onclick = function() {
-  connection.extra = {
-    'session-name': 'Anonymous'
-  };
-  connection.bandwidth = {
-    audio: 10
-  };
-
-  connection.open();
+connection.onopen = function(e) {
+  console.log('onopen');
+  console.log(e);
 };
+
+var audiosContainer = document.getElementById('audios-container') || document.body;
 
 
 $( window ).load(function() {
   setTimeout(function() {
-    if (!sessionStarted) {
-      startBtn.style.display = 'block';
-    }
+    connection.open();
   }, 7000);
 });
 
 
 // setup signaling to search existing sessions
 connection.connect();
-
-(function() {
-  var uniqueToken = document.getElementById('unique-token');
-  if (uniqueToken)
-    if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
-    else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
-})();
