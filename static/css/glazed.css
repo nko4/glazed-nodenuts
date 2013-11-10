@@ -109,6 +109,22 @@ progress {
   width: 90%;
 }
 
+/** user **/
+.user {
+  width: 30px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 5px;
+  border: 1px solid #333;
+
+  background-image: linear-gradient(
+    rgba(255,255,255,0.6),
+    rgba(0,0,0,0.6)
+  );
+  background-color: hsl(0, 0%, 50%);
+
+  color: white;
+}
 
 /** footer **/
 
