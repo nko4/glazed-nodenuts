@@ -50,7 +50,19 @@
         </div>
 
 		<progress value="0" max="100"></progress>
-        <div class="tv-title"></div>
+        
+        <div id="tv-users">
+          <div class="tv-title"></div>
+         
+	       <section id="webrtc-container">
+			 <section>
+			   <button style="display: none" id="setup-new-conference" class="setup">Seems like no one is here, press this button and share the page link.</button>
+		     </section>
+			
+			  <!-- local/remote audios container -->
+			 <div  id="audios-container"></div>
+		</section>
+        </div>
 
         <div id="tv-buttons">
           <ul class="tv-knobs">
@@ -101,17 +113,6 @@
 
 
   </section>
-
-
-<!-- just copy this <section> and next script -->
-<section class="experiment">
-  <section>
-    <button style="display: none" id="setup-new-conference" class="setup">Seems like no one is here, press this button and share the page link.</button>
-  </section>
-
-  <!-- local/remote audios container -->
-  <div  id="audios-container"></div>
-</section>
 
 <!-- Engine 2  -->
 <script src="/js/midilib2/MIDI/AudioDetect.js" type="text/javascript"></script>
