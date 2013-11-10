@@ -3,6 +3,7 @@ require('nko')('G-TTdL9lMtih7ZXl');
 
 // Require.
 var express = require('express');
+var minify = require('express-minify');
 var api = require('./lib/api');
 var socket = require('./lib/socket');
 
@@ -14,12 +15,15 @@ var addrinfo = server.address();
 // Configure.
 socket.configure(server);
 
-app.configure('development', function() {
-  app.use(express.static(__dirname + '/static'));
+// Minify and GZip all assets at runtime who cares...
+app.configure('production', function() {
+  app.use(express.compress());
+  app.use(minify());
 });
 
-app.configure('production', function() {
-
+// Ensure static files can be correctly served.
+app.configure(function() {
+  app.use(express.static(__dirname + '/static'));
 });
 
 // Serve.

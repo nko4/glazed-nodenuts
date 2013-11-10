@@ -29,7 +29,7 @@
 
   // Refresh dat dom; hell yeah; work it.
   dom.refresh();
-  
+
 
   // Cache all templates used.
   var template = {
@@ -156,7 +156,7 @@
           var monitorPosition = dom.monitor.position()
           var activePosition = $($lyrics[index]).position();
           if ( activePosition ) {
-	        scrollLyrics(activePosition.top - monitorPosition.top);
+            scrollLyrics(activePosition.top - monitorPosition.top);
           }
 
           if ($lyrics[index-1]) {
@@ -254,35 +254,35 @@
   dom.volumeSlider.change(function(){
     MIDI.setVolume(0, $(this).val());
   });
-  
+
   // mute all connections button
   dom.muteGlobalButton.click(function(){
-	var $clicked = $(this);
-	if ( $clicked.hasClass('muted') ) {
-	  $clicked.removeClass('muted');
-	  $clicked.siblings('.tv-label').text("mute all");
-	  connection.streams.unmute();
-	}
-	else {
-	  $clicked.addClass('muted');
-	  $clicked.siblings('.tv-label').text("unmute all");
-	  connection.streams.mute();
-	}
+    var $clicked = $(this);
+    if ( $clicked.hasClass('muted') ) {
+      $clicked.removeClass('muted');
+      $clicked.siblings('.tv-label').text("mute all");
+      connection.streams.unmute();
+    }
+    else {
+      $clicked.addClass('muted');
+      $clicked.siblings('.tv-label').text("unmute all");
+      connection.streams.mute();
+    }
   });
-  
+
   // mute only local connection button
   dom.muteSelfButton.click(function(){
-	var $clicked = $(this);
-	if ( $clicked.hasClass('muted') ) {
-	  $clicked.removeClass('muted');
-	  $clicked.siblings('.tv-label').text("mute self");
-	  connection.streams[connection.attachStreams[0].id].unmute();
-	}
-	else {
-	  $clicked.addClass('muted');
-	   $clicked.siblings('.tv-label').text("unmute self");
-	  connection.streams[connection.attachStreams[0].id].mute()
-	}
+    var $clicked = $(this);
+    if ( $clicked.hasClass('muted') ) {
+      $clicked.removeClass('muted');
+      $clicked.siblings('.tv-label').text("mute self");
+      connection.streams[connection.attachStreams[0].id].unmute();
+    }
+    else {
+      $clicked.addClass('muted');
+      $clicked.siblings('.tv-label').text("unmute self");
+      connection.streams[connection.attachStreams[0].id].mute()
+    }
   });
-  
+
 })(this);
