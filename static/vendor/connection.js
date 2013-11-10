@@ -28,9 +28,6 @@ connection.bandwidth = {
 };
 connection.autoCloseEntireSession = false;
 
-
-var startBtn = document.getElementById('setup-new-conference');
-
 // https://github.com/muaz-khan/WebRTC-Experiment/tree/master/socketio-over-nodejs
 connection.openSignalingChannel = function(config) {
   var SIGNALING_SERVER = 'https://www.webrtc-experiment.com:2015/';
@@ -62,7 +59,6 @@ connection.openSignalingChannel = function(config) {
 connection.onstream = function(e) {
   e.mediaElement.volume = 0.2;
 
-  startBtn.style.display = 'none';
   sessionStarted = true;
   createUser(e);
 };
