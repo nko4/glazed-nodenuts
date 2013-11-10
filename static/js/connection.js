@@ -65,20 +65,11 @@ function createUser(e) {
   node.connect(context.destination);
 }
 
-function rotateAudio(mediaElement) {
-  mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-  setTimeout(function() {
-    mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-  }, 1000);
-}
-
 connection.onstreamended = function(e) {
-  e.mediaElement.style.opacity = 0;
-  rotateAudio(e.mediaElement);
+  var userEl = $('#user' + e.userid);
+  userEl.fadeOut();
   setTimeout(function() {
-    if (e.mediaElement.parentNode) {
-      e.mediaElement.parentNode.removeChild(e.mediaElement);
-    }
+    userEl.remove();
   }, 1000);
 };
 
