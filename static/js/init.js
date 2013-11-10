@@ -19,6 +19,7 @@
       this.muteGlobalButton = $('#mute-global');
       this.muteSelfButton = $('#mute-self');
       this.voteSkip = $('.vote-skip-count');
+      this.clapCount = $('.clap-count');
     }
   };
 
@@ -185,7 +186,10 @@
 
       // Vote.
       dom.voteSkip.text(left);
-
+      var claps = state.claps;
+      if (claps) {
+        dom.clapCount.text(claps);
+      }
       //console.log(state);
       // If we are on a totally different song now, change it.
       if (currentSongFile !== state.song) {
