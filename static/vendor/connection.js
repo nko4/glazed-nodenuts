@@ -110,6 +110,12 @@ connection.onerror = function(e) {
   console.log(e);
 };
 
+connection.onNewSession = function(session) {
+  console.log(session);
+  sessionStarted = true;
+  connection.join(session);
+};
+
 connection.onopen = function(e) {
   console.log('onopen');
   console.log(e);
@@ -131,11 +137,11 @@ $( window ).load(function() {
   // we could not connect for 6 seconds man
   setTimeout(function() {
     // IF I AM ASKING FOR PERMISSION I AM PROBABLY GONNA BE OKAY
-    if (window.connection.ASKING_FOR_PERMISSION === false || sessionStarted === true) {
+    if (window.connection.ASKING_FOR_PERMISSION === false && sessionStarted === false) {
       console.log('Opening a new connection, so alone :(');
       connection.open();
     }
-  }, 6000);
+  }, 7000);
 });
 
 
