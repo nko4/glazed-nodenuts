@@ -4,9 +4,9 @@ require('nko')('G-TTdL9lMtih7ZXl');
 // Require.
 var fs = require('fs');
 var express = require('express');
-var minify = require('express-minify');
 var api = require('./lib/api');
 var socket = require('./lib/socket');
+
 
 // Lodash you such a pain in the ass.
 global._ = require('lodash');
@@ -51,8 +51,8 @@ try {
 // Hate this so much.  THIS WAS NOT TIM'S IDEA.
 var files = [
   '/js/shim.js',
-  '/vendor/jquery.js',
-  '/vendor/lodash.js',
+  '/vendor/jquery.min.js',
+  '/vendor/lodash.min.js',
   '/vendor/rtc.js',
   '/vendor/midilib2/MIDI/AudioDetect.js',
   '/vendor/midilib2/MIDI/LoadPlugin.js',
