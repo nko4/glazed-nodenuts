@@ -60,6 +60,7 @@ function createUser(e) {
 
   var clap = new Clap();
   var node = clap.detect(context.createMediaStreamSource(e.stream), context, function(err, average) {
+    if (average > 15) socket.emit('clap');
     userEl.get(0).style.backgroundColor = 'hsl(170, ' + average + '%, 50%)';
   });
   node.connect(context.destination);
