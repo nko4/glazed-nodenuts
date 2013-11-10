@@ -18,12 +18,13 @@
       this.progress = $('progress');
       this.muteGlobalButton = $('#mute-global');
       this.muteSelfButton = $('#mute-self');
-      this.voteSkip = $('.vote-skip .count');
+      this.voteSkip = $('.vote-skip-count');
     }
   };
 
   // Refresh dat dom; hell yeah; work it.
   dom.refresh();
+  
 
   // Cache all templates used.
   var template = {
