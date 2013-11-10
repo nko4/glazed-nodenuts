@@ -3,6 +3,9 @@
 // MIT License   - https://www.webrtc-experiment.com/licence/
 // Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/RTCMultiConnection
 
+// disable rtc logging
+window.skipRTCMultiConnectionLogs = true;
+
 var connection = new RTCMultiConnection();
 var sessionStarted = false;
 connection.session = {
@@ -17,7 +20,8 @@ connection.openSignalingChannel = function(config) {
   var SIGNALING_SERVER = 'https://www.webrtc-experiment.com:2015/';
   //var SIGNALING_SERVER = 'https://localhost:2015/';
   var channel = config.channel || this.channel || location.hash.substr(1);
-  var sender = Math.round(Math.random() * 999999999) + 999999999;
+  //var sender = Math.round(Math.random() * 999999999) + 999999999;
+  var sender = '1234';
 
   io.connect(SIGNALING_SERVER).emit('new-channel', {
     channel: channel,
@@ -43,12 +47,23 @@ connection.openSignalingChannel = function(config) {
 connection.onstream = function(e) {
   startBtn.style.display = 'none';
   sessionStarted = true;
-
-  audiosContainer.insertBefore(e.mediaElement, audiosContainer.firstChild);
-  rotateAudio(e.mediaElement);
+  createUser(e);
 };
 
+// Create a user icon
+function createUser(e) {
+  var userEl = $('<div/>').attr({id: 'user' + e.userid}).addClass('user');
+  e.mediaElement.style.opacity = 0;
+  userEl.append(e.mediaElement);
+  audiosContainer.insertBefore(userEl.get(0), audiosContainer.firstChild);
 
+  var clap = new Clap();
+  var context = new AudioContext();
+  var node = clap.detect(context.createMediaStreamSource(e.stream), context, function(err, average) {
+    userEl.get(0).style.backgroundColor = 'hsl(170, ' + average + '%, 50%)';
+  });
+  node.connect(context.destination);
+}
 
 function rotateAudio(mediaElement) {
   mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
