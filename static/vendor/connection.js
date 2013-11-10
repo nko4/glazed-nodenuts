@@ -60,6 +60,8 @@ connection.openSignalingChannel = function(config) {
 };
 
 connection.onstream = function(e) {
+  e.mediaElement.volume = 0.2;
+
   startBtn.style.display = 'none';
   sessionStarted = true;
   createUser(e);
@@ -98,8 +100,7 @@ function createUser(e) {
 
 }
 
-connection.onstreamended = function(e) {
-  e.mediaElement.volume = 0.5;
+connection.onstreamended = function(e) {;
 
   var userEl = $('#user' + e.userid);
   userEl.fadeOut();
