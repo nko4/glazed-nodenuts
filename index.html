@@ -49,34 +49,21 @@
           </div>
         </div>
 
-		<progress value="0" max="100"></progress>
-        
-        <div id="tv-users">
-          <div class="tv-title"></div>
-         
-	       <section id="webrtc-container">
-			 <section>
-			   <button style="display: none" id="setup-new-conference" class="setup">Seems like no one is here, press this button and share the page link.</button>
-		     </section>
-			
-			  <!-- local/remote audios container -->
-			 <div id="audios-container"></div>
-		</section>
-        </div>
-
+                <progress value="0" max="100"></progress>
+                
         <div id="tv-buttons">
           <ul class="tv-knobs">
             <li>
-              <a href="#mute" class="tv-control" onclick=""></a>
-              <a class="tv-label">mute</a>
+              <a href="#mute" class="tv-control" id="mute-global" onclick="connection.streams.mute()"></a>
+              <a class="tv-label">mute all</a>
+            </li>
+            <li>
+              <a href="#prev" class="tv-control" id="mute-self"></a>
+              <a class="tv-label">mute self</a>
             </li>
             <li>
               <a href="#prev" class="tv-control" onclick=""></a>
               <a class="tv-label">skip song</a>
-            </li>
-            <li>
-              <a href="#prev" class="tv-control" onclick=""></a>
-              <a class="tv-label">ban user</a>
             </li>
            	<li class="volume-range">
              <label for="vol">Volume</label>
@@ -84,6 +71,19 @@
             </li>
           </ul>
        
+        </div>
+        
+        <div id="tv-users">
+          <div class="tv-title"></div>
+         
+               <section id="webrtc-container">
+                         <section>
+                           <button style="display: none" id="setup-new-conference" class="setup">Seems like no one is here, press this button and share the page link.</button>
+                     </section>
+                        
+                          <!-- local/remote audios container -->
+                         <div id="audios-container"></div>
+                </section>
         </div>
         
             

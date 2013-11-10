@@ -16,6 +16,8 @@
       this.songTitle = $('.tv-title');
       this.volumeSlider = $('#vol');
       this.progress = $('progress');
+      this.muteGlobalButton = $('#mute-global');
+      this.muteSelfButton = $('#mute-self');
     }
   };
 
@@ -213,8 +215,41 @@
   // Kick off the application by starting the current song.
   playCurrentSong();
 
-  // Dom events
+  /** Dom events **/
   dom.volumeSlider.change(function(){
     MIDI.setVolume(0, $(this).val());
   });
+  
+  // mute all connections button
+  dom.muteGlobalButton.click(function(){
+	var $clicked = $(this);
+	if ( $clicked.hasClass('muted') ) {
+	  $clicked.removeClass('muted');
+	  $clicked.siblings('.tv-label').text("mute all");
+	  connection.streams.unmute();
+	}
+	else {
+	  $clicked.addClass('muted');
+	  $clicked.siblings('.tv-label').text("unmute all");
+	  connection.stream.mute();
+	}
+  });
+  
+  // mute only local connection button
+  dom.muteSelfButton.click(function(){
+	var $clicked = $(this);
+	if ( $clicked.hasClass('muted') ) {
+	  $clicked.removeClass('muted');
+	  $clicked.siblings('.tv-label').text("mute self");
+	  connections.streams[connection.attachStreams[0].id].unmute();
+	}
+	else {
+	  $clicked.addClass('muted');
+	   $clicked.siblings('.tv-label').text("unmute self");
+	  connections.streams[connection.attachStreams[0].id].mute()
+	}
+  });
+
+  
+  
 })(this);
