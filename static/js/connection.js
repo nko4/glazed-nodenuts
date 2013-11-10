@@ -104,11 +104,15 @@ startBtn.onclick = function() {
   connection.open();
 };
 
-setTimeout(function() {
-  if (!sessionStarted) {
-    startBtn.style.display = 'block';
-  }
-}, 5000);
+
+$( window ).load(function() {
+  setTimeout(function() {
+    if (!sessionStarted) {
+      startBtn.style.display = 'block';
+    }
+  }, 7000);
+});
+
 
 // setup signaling to search existing sessions
 connection.connect();
