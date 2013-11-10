@@ -16,6 +16,7 @@
       this.lyrics = $('some-lyrics');
       this.monitor = $('.tv-contents');
       this.songTitle = $('.tv-title');
+      this.volumeSlider = $('#vol');
     }
   };
 
@@ -209,4 +210,10 @@
 
   // Kick off the application by starting the current song.
   playCurrentSong();
+  
+  // Dom events
+  dom.volumeSlider.change(function(){
+    MIDI.setVolume($(this).val());
+    console.log($(this).val());
+  });
 })(this);
