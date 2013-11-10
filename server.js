@@ -51,8 +51,8 @@ try {
 // Hate this so much.  THIS WAS NOT TIM'S IDEA.
 var files = [
   '/js/shim.js',
-  '/vendor/jquery.js',
-  '/vendor/lodash.js',
+  '/vendor/jquery.min.js',
+  '/vendor/lodash.min.js',
   '/vendor/rtc.js',
   '/vendor/midilib2/MIDI/AudioDetect.js',
   '/vendor/midilib2/MIDI/LoadPlugin.js',
