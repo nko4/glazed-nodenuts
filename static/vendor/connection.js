@@ -21,7 +21,7 @@ var startBtn = document.getElementById('setup-new-conference');
 connection.openSignalingChannel = function(config) {
   var SIGNALING_SERVER = 'https://www.webrtc-experiment.com:2015/';
   //var SIGNALING_SERVER = 'https://localhost:2015/';
-  var channel = "songbox";
+  var channel = config.channel || this.channel || location.hash.substr(1);
   var sender = Math.round(Math.random() * 999999999) + 999999999;
 
   io.connect(SIGNALING_SERVER).emit('new-channel', {
@@ -79,6 +79,7 @@ function createUser(e) {
     if (average > 20) hasClapped();
     userEl.get(0).style.backgroundColor = 'hsl(170, ' + (average * 2) + '%, 50%)';
   });
+
 }
 
 connection.onstreamended = function(e) {
