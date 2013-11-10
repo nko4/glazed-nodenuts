@@ -75,7 +75,6 @@ function createUser(e) {
     if (average > 15) socket.emit('clap');
     userEl.get(0).style.backgroundColor = 'hsl(170, ' + (average * 2) + '%, 50%)';
   });
-  node.connect(context.destination);
 }
 
 connection.onstreamended = function(e) {
