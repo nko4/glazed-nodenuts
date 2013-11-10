@@ -231,7 +231,7 @@
 	else {
 	  $clicked.addClass('muted');
 	  $clicked.siblings('.tv-label').text("unmute all");
-	  connection.stream.mute();
+	  connection.streams.mute();
 	}
   });
   
@@ -241,12 +241,12 @@
 	if ( $clicked.hasClass('muted') ) {
 	  $clicked.removeClass('muted');
 	  $clicked.siblings('.tv-label').text("mute self");
-	  connections.streams[connection.attachStreams[0].id].unmute();
+	  connection.streams[connection.attachStreams[0].id].unmute();
 	}
 	else {
 	  $clicked.addClass('muted');
 	   $clicked.siblings('.tv-label').text("unmute self");
-	  connections.streams[connection.attachStreams[0].id].mute()
+	  connection.streams[connection.attachStreams[0].id].mute()
 	}
   });
 
