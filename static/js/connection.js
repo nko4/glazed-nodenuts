@@ -65,19 +65,24 @@ connection.onstreamended = function(e) {
   }, 1000);
 };
 
+connection.onerror = function(e) {
+  console.log('onerror');
+  console.log(e);
+// setup signaling to search existing sessions
+  connection.connect();
+};
+
 var sessions = { };
 var audiosContainer = document.getElementById('audios-container') || document.body;
 
-startBtn.onclick = function() {
-  connection.extra = {
-    'session-name': 'Anonymous'
-  };
-  connection.bandwidth = {
-    audio: 10
-  };
-
-  connection.open();
+connection.extra = {
+  'session-name': 'Anonymous'
 };
+connection.bandwidth = {
+  audio: 10
+};
+
+connection.open();
 
 setTimeout(function() {
   if (!sessionStarted) {
@@ -85,8 +90,6 @@ setTimeout(function() {
   }
 }, 5000);
 
-// setup signaling to search existing sessions
-connection.connect();
 
 (function() {
   var uniqueToken = document.getElementById('unique-token');
