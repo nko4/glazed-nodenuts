@@ -18,6 +18,7 @@
       this.progress = $('progress');
       this.muteGlobalButton = $('#mute-global');
       this.muteSelfButton = $('#mute-self');
+      this.voteSkip = $('.vote-skip .count');
     }
   };
 
@@ -171,7 +172,18 @@
     window.socket = io.connect(url);
 
     socket.on('pulse', function(state) {
+      // Up date dat dom.
       dom.progress.val((state.position / state.endTime) * 100);
+
+      // Vaiarkables.
+      var part = state.skip.votes;
+      var whole = state.skip.total;
+
+      // Holy shit my math skills are not where they used to be.
+      var left = Math.ceil(whole - (whole * (0.5+(part/whole))));
+
+      // Vote.
+      dom.voteSkip.text(left);
 
       //console.log(state);
       // If we are on a totally different song now, change it.
