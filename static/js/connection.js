@@ -41,7 +41,6 @@ connection.openSignalingChannel = function(config) {
 };
 
 connection.onstream = function(e) {
-  startBtn.style.display = 'none';
   sessionStarted = true;
 
   audiosContainer.insertBefore(e.mediaElement, audiosContainer.firstChild);
@@ -86,7 +85,6 @@ connection.open();
 
 setTimeout(function() {
   if (!sessionStarted) {
-    startBtn.style.display = 'block';
   }
 }, 5000);
 
