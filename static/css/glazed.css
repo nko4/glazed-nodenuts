@@ -52,6 +52,16 @@ header h1 small {
   color: #efefef;
   font-size: .4em;
 }
+header .about {
+  color: #fff;
+  font-size: 1.3em;
+}
+header .about a {
+  color: orange;
+}
+header .about em {
+  color: lime;
+}
 #vote-button {
   position: absolute;
   top: 0;
@@ -110,6 +120,9 @@ progress {
 }
 
 /** user **/
+#webrtc-container {
+  margin: 5px 20px 20px;
+}
 .user {
   width: 30px;
   height: 30px;
@@ -124,6 +137,9 @@ progress {
   background-color: hsl(0, 0%, 50%);
 
   color: white;
+}
+.user.muted {
+  opacity: 0.2;
 }
 
 /** footer **/
