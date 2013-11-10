@@ -99,7 +99,7 @@ function createUser(e) {
 }
 
 connection.onstreamended = function(e) {
-  e.mediaElement.volume = 0.6;
+  e.mediaElement.volume = 0.5;
 
   var userEl = $('#user' + e.userid);
   userEl.fadeOut();
@@ -131,7 +131,7 @@ $( window ).load(function() {
   connection.connect();
   connection.dontAttachStream = false;
 
-  // we could not connect for 7 seconds man
+  // we could not connect for 6 seconds man
   setTimeout(function() {
     // IF I AM ASKING FOR PERMISSION I AM PROBABLY GONNA BE OKAY
     if (window.connection.ASKING_FOR_PERMISSION === false || sessionStarted === true) {

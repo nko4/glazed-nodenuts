@@ -94,7 +94,7 @@
       player.timeWarp = 1; // speed the song is played back
 
       player.loadFile(song, function() {
-        player.stop();
+        //player.stop();
         player.currentTime = startPosition * 1000;
         player.start();
       });
@@ -105,7 +105,7 @@
       var songSeconds = Math.floor( (endTimeRaw/60000 - songMinutes) * 60 );
 
       // Retrieve song meta data and put into array
-      var songArray = []
+      var songArray = [];
       for (var i = 0; i <= 100; i++ ) {
         var event  = player.data[i][0].event;
         if ( event.type == 'meta' && event.text ) {
@@ -217,12 +217,16 @@
         var roughState = parseInt(state.position.toString().substr(0,2));
 
         var difference = Math.abs(roughCurrent-roughState);
-
-        // Only STOP and SYNC if off by 5 and less than 20.
-        if (difference > 2 && difference < 10) {
+        //console.log(roughCurrent, roughState, difference);
+        var adjust = function() {
+          console.log('adjusting');
           player.stop();
           player.currentTime = state.position * 1000;
           player.start();
+        };
+        // Only STOP and SYNC if off by something and less than something.
+        if ((difference > 1 && difference < 10) || (difference > 150)) {
+          adjust();
         }
       }
     });
