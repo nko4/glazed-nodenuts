@@ -180,6 +180,8 @@ progress {
 
   color: white;
   cursor: pointer;
+  float: left;
+  margin-right: 5px;
 }
 .user.muted {
   opacity: 0.2;
