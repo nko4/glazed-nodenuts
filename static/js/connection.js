@@ -58,6 +58,18 @@ function createUser(e) {
   userEl.append(e.mediaElement);
   audiosContainer.insertBefore(userEl.get(0), audiosContainer.firstChild);
 
+  var streamid = e.streamid;
+  userEl.on('click', function(e) {
+    e.preventDefault();
+    if (userEl.hasClass('muted')) {
+      connection.streams[streamid].unmute({ audio: true });
+      userEl.removeClass('muted');
+    } else {
+      connection.streams[streamid].mute({ audio: true });
+      userEl.addClass('muted');
+    }
+  });
+
   var clap = new Clap();
   var node = clap.detect(context.createMediaStreamSource(e.stream), context, function(err, average) {
     if (average > 15) socket.emit('clap');
@@ -77,7 +89,6 @@ connection.onstreamended = function(e) {
 connection.onerror = function(e) {
   console.log('onerrror');
   console.log(e);
-
 };
 
 var sessions = { };
