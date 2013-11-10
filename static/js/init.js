@@ -166,7 +166,7 @@
 
   function connectSocket() {
     var url = ['http://', location.hostname, ':', location.port].join('');
-    var socket = io.connect(url);
+    window.socket = io.connect(url);
 
     socket.on('pulse', function(state) {
       dom.progress.val((state.position / state.endTime) * 100);
