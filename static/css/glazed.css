@@ -24,9 +24,9 @@ section.experiment {
   10% { background-color: red; }
   20% { background-color: orange; } 
   40% { background-color: yellow; } 
-  60% { background-color: green; } 
-  80% { background-color: blue; } 
-  100% { background-color: purple; }
+  60% { background-color: #20d320; } 
+  80% { background-color: #41CAD9; } 
+  100% { background-color: #f44df4; }
 }
 
 @-webkit-keyframes glowpulse {
@@ -34,45 +34,73 @@ section.experiment {
   100% { text-shadow: 0px 0px 15px #d7115a; }
 }
 
+@-webkit-keyframes rainbowBorder {
+  10% { border-color: red; }
+  20% { border-color: orange; } 
+  40% { border-color: yellow; } 
+  60% { border-color: green; } 
+  80% { border-color: blue; } 
+  100% { border-color: purple; }
+}
+
 /** header **/
 #setup-new-conference {
   margin: 10px auto;
+  border:4px solid red;
+  width: 100%;
+  font-size: 1.2em;
+  -webkit-animation: rainbowBorder 10s infinite alternate;
 }
 header {
   width: 100%;
-  margin: 0 auto; 
+  margin: 0 auto 30px; 
+  position: relative;
 }
 header h1 {
   font-family: Novasolid;
   color: yellow;
   letter-spacing: .1em;
-  font-size: 5em;
-  position: relative;
+  font-size: 6em;
 }
 header h1 small {
   display: block;
   color: #efefef;
   font-size: .4em;
 }
-header .about {
-  color: #fff;
-  font-size: 1.3em;
-}
-header .about a {
-  color: orange;
-}
-header .about em {
-  color: lime;
-}
 #vote-button {
   position: absolute;
   top: 0;
   right: 0;
   -webkit-animation: rainbow 10s infinite alternate;
-  padding: 5px;
+  padding: 0 5px;
   border-radius: 5px;
+  text-align: center;
 }
-
+#vote-button h5 {
+  margin: 5px 0;
+  color: #000;
+}
+#vote-button iframe {
+  background: #fff; 
+}
+#about-app {
+  margin: 0 auto;
+  background: #1fdc1f;
+  color: #000;
+  width: 90%;
+  border-radius: 35px 35px 0 0;
+  padding: 5px 20px 10px;
+  box-shadow: 0 0 20px #1fdc1f;
+  text-align: center;
+  font-size: .9em;
+  line-height: 1.8em;
+}
+a.tweet {
+  background: #4099ff;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
 
 /** karaoke machine contents **/
 
@@ -84,9 +112,10 @@ header .about em {
   background-color: #d7115a;
   box-shadow: 0px 0px 20px #d7115a;
   border-radius: 10px;
-  position: relative;
   height: 100%;
   margin: 0 auto 10px;
+  position: relative;
+  top: -20px;
 }
 some-lyrics {
   position: absolute; 
@@ -123,7 +152,18 @@ progress {
 
 /** user **/
 #webrtc-container {
-  margin: 5px 20px 20px;
+  margin: 20px;
+}
+#webrtc-container h4 {
+  font-size: 2em;
+  font-family: chintzy;
+  margin-bottom: 0;
+}
+#webrtc-container h4 small {
+  font-family: Arial, sans-serif;
+  color: #333;
+  font-size: .5em;
+  font-style: italic;
 }
 .user {
   width: 30px;
@@ -149,22 +189,30 @@ progress {
 
 footer { 
   padding: 20px; 
-  font-family: Chintzy;
-  font-size: 2em;
   text-align: center;
   color: #41CAD9;
+  font-size: 1.2em;
+}
+footer .us {
+  font-family: Chintzy;
+  letter-spacing: .1em;
+  font-size: 1.5em;
+  display: inline-block;
+  margin-right: 10px;
+}
+footer a {
+  color: #1fdc1f;
 }
 
 /** ~*responsive lyfe*~ **/
 
 @media 
 only screen and ( max-width: 600px) {
-  header h1 {
-	font-size: 3em;
-  }
+
   #vote-button {
 	position: static;
 	display: block;
+	margin: 10px 0;
   }
   .tv-screen {
 	left: auto;

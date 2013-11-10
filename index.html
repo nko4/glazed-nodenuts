@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>NODE.SONG.BOX</title>
+  <title>NODE.SONGBOX</title>
 
   <link rel="stylesheet" href="css/bootstrap.css" />
   
@@ -29,21 +29,21 @@
 
   <section id="main-content">
   
-  <button id="setup-new-conference" style="display: none" class="setup">No one is here! Press this button, then share the page link with friends and your most fun family members!</button>
+  <button id="setup-new-conference" style="display: none" class="setup">No one is here! Press this button to start a party, then invite your friends by sending this link!</button>
  
     <header>
-      <h1>NODE.SONG.BOX<small>There's gotta be a better name for this.
-      <iframe id="vote-button" src="http://nodeknockout.com/iframe/glazed-nodenuts" frameborder=0 scrolling=no allowtransparency=true width=115 height=35></iframe></small></h1>
+      <h1>NODE.SONGBOX <small>The online karaoke party, no cover!</small></h1>
       
-      <p class="about">by <a href="http://twitter.com/vladikoff">@vladikoff</a>, 
-            <a href="http://twitter.com/tbranyen">@tbranyen</a>, 
-            <a href="http://twitter.com/shamakry">@shamakry</a>, 
-            <a href="http://twitter.com/jennschiffer">@jennschiffer</a> 
-            &bull; <em>works in Chrome and Firefox Aurora</em>
-      </p>
+       <div id="vote-button">
+         <h5>Vote for our app!</h5>
+         <iframe src="http://nodeknockout.com/iframe/glazed-nodenuts" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>
+       </div>
     </header>
 
-
+	<section id="about-app">
+        This karaoke party works in Chrome and Firefox Aurora. Allow the browser to use your microphone to sing and send this page to your friends to invite them to the party! <a target="_blank" href="http://twitter.com/home?status=Join our karaoke party at the NODE.SONGBOX! http://glazed-nodenuts.2013.nodeknockout.com" class="tweet">Click here to tweet an invite!</a>
+	</section>
+	
     <section id="karaoke-machine">
 
         <div class="tv-screen">
@@ -79,12 +79,13 @@
         <div id="tv-users">
           <div class="tv-title"></div>
           <div class="tv-claps">
-	        <h4>Clap-o-meter </h4>
+	        <h4>Clap-o-Meter</h4>
 	        <span class="clap-count">0</span> claps!</div>
           </div>
          
          <section id="webrtc-container">
             <!-- local/remote audios container -->
+            <h4>The Room <small>Click user to mute/unmute</small></h4>
             <div id="audios-container"></div>
           </section>
         </div>
@@ -93,7 +94,12 @@
     </section>
 
     <footer>
-      &copy; Glazed Nodenuts!
+      &copy; <span class="us">Glazed Nodenuts</span>
+      
+      <a href="http://twitter.com/vladikoff">@vladikoff</a> 
+      <a href="http://twitter.com/tbranyen">@tbranyen</a> 
+      <a href="http://twitter.com/shamakry">@shamakry</a> 
+      <a href="http://twitter.com/jennschiffer">@jennschiffer</a> 
     </footer>
 
   </section>
