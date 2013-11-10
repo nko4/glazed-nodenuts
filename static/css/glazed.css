@@ -137,6 +137,7 @@ progress {
   background-color: hsl(0, 0%, 50%);
 
   color: white;
+  cursor: pointer;
 }
 .user.muted {
   opacity: 0.2;

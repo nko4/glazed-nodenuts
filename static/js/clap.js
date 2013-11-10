@@ -20,7 +20,7 @@ window.Clap = (function(exp) {
       return values / length;
     }
 
-    var node = ctx.createJavaScriptNode(2048, 1, 1);
+    //var node = ctx.createJavaScriptNode(2048, 1, 1);
     // onaudioprocess isnt working, it dies after awhile, just poll it
     //node.onaudioprocess = function() {
     setInterval(function() {
@@ -30,8 +30,9 @@ window.Clap = (function(exp) {
     }, 100);
 
     source.connect(analyser);
-    analyser.connect(node);
-    return node;
+    //analyser.connect(node);
+    return analyser;
+    //return node;
   };
 
   Clap.prototype.visual = function(source, ctx, cb) {
