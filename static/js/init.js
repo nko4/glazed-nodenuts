@@ -9,6 +9,7 @@
   var song = null;
 
   var SWITCHING = false;
+  var SYNCING = false;
 
   // Cache me some jQuery DOM.
   var dom = {
@@ -65,7 +66,7 @@
     SWITCHING = false;
     // Awesome variable name.
     var $lyrics = dom.lyrics.find('a-lyric');
-
+    scrollLyrics(0);
     // Maintain it like this for now.
     var index = 0;
 
