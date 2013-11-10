@@ -80,15 +80,19 @@ function createUser(e) {
     }
   });
 
-  var clap = new Clap();
-  var node = clap.detect(context.createMediaStreamSource(e.stream), context, function(err, average) {
-    if (average > 20) hasClapped();
-    userEl.get(0).style.backgroundColor = 'hsl(170, ' + (average * 2) + '%, 50%)';
-  });
+  (function(el) {
+    var clap = new Clap();
+    clap.detect(context.createMediaStreamSource(e.stream), context, function(err, average) {
+      if (average > 20) hasClapped();
+      el.style.backgroundColor = 'hsl(170, ' + (average * 2) + '%, 50%)';
+    });
+  }(userEl.get(0)))
 
 }
 
 connection.onstreamended = function(e) {
+  e.mediaElement.volume = 0.6;
+
   var userEl = $('#user' + e.userid);
   userEl.fadeOut();
   setTimeout(function() {
