@@ -9,6 +9,8 @@
   var song = null;
   var VOTE_COUNT = 0;
   var CLAP_COUNT = 0;
+  var PROGRESS_CURRENT = 0;
+
 
   // Cache me some jQuery DOM.
   var dom = {
@@ -177,8 +179,11 @@
 
     socket.on('pulse', function(state) {
       // Up date dat dom.
-      dom.progress.val((state.position / state.endTime) * 100);
-
+      var progress = parseInt((state.position / state.endTime) * 100);
+      if (progress % 10 === 0 || PROGRESS_CURRENT === 0) {
+        PROGRESS_CURRENT = progress;
+        dom.progress.val(progress);
+      }
       // Vaiarkables.
       var part = state.skip.votes;
       var whole = state.skip.total;
