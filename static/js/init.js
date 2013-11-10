@@ -249,7 +249,5 @@
 	  connection.streams[connection.attachStreams[0].id].mute()
 	}
   });
-
-  
   
 })(this);
