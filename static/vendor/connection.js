@@ -27,7 +27,7 @@ var startBtn = document.getElementById('setup-new-conference');
 connection.openSignalingChannel = function(config) {
   var SIGNALING_SERVER = 'https://www.webrtc-experiment.com:2015/';
   //var SIGNALING_SERVER = 'https://localhost:2015/';
-  var channel = config.channel || this.channel || location.hash.substr(1);
+  var channel = config.channel || this.channel || "";
   var sender = Math.round(Math.random() * 999999999) + 999999999;
 
   io.connect(SIGNALING_SERVER).emit('new-channel', {
