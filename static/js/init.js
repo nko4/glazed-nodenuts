@@ -8,6 +8,8 @@
   var player = null;
   var song = null;
 
+  var SWITCHING = false;
+
   // Cache me some jQuery DOM.
   var dom = {
     refresh: function() {
@@ -60,10 +62,7 @@
   }
 
   function play() {
-    var startTime = Date.now();
-    var start = Number(lyrics[0].playTime);
-    var stop = Number(lyrics[lyrics.length-1].playTime);
-
+    SWITCHING = false;
     // Awesome variable name.
     var $lyrics = dom.lyrics.find('a-lyric');
 
@@ -143,8 +142,9 @@
 
         // Compare the timing and correctly.
         if (curPlayTime <= elapsed) {
-          $lyrics[index].classList.add('active');
-
+          if ($lyrics[index]) {
+            $lyrics[index].classList.add('active');
+          }
           // get position of active lyric
           var monitorPosition = dom.monitor.position()
           var activePosition = $($lyrics[index]).position();
@@ -159,7 +159,7 @@
           index = index + 1;
         }
 
-        console.log(curPlayTime, elapsed, startPosition);
+        //console.log(curPlayTime, elapsed, startPosition);
       }, 100);
     }
   }
@@ -169,17 +169,26 @@
     var socket = io.connect(url);
 
     socket.on('pulse', function(state) {
+      //console.log(state);
       // If we are on a totally different song now, change it.
-      if (currentSongFile !== state.song) {
+      if (currentSongFile !== state.song && !SWITCHING) {
         // Reset.
         song = state.song;
+        SWITCHING = true;
 
         return playCurrentSong();
       }
 
       // Otherwise sychronize to the latest.
       if (player) {
-        player.currentTime = state.position * 1000;
+        var roughCurrent = parseInt(player.currentTime.toString().substr(0,2));
+        var roughState = parseInt(state.position.toString().substr(0,2));
+        // Only STOP and SYNC if off by 2
+        if (roughCurrent < roughState - 2 || roughCurrent > roughState + 2) {
+          player.stop();
+          player.currentTime = state.position * 1000;
+          player.start();
+        }
       }
     });
   }
