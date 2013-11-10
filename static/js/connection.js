@@ -51,6 +51,10 @@ connection.onstream = function(e) {
   createUser(e);
 };
 
+var hasClapped = _.debounce(function() {
+  socket.emit('clap');
+}, 300);
+
 // Create a user icon
 function createUser(e) {
   var userEl = $('<div/>').attr({id: 'user' + e.userid}).addClass('user');
@@ -72,7 +76,7 @@ function createUser(e) {
 
   var clap = new Clap();
   var node = clap.detect(context.createMediaStreamSource(e.stream), context, function(err, average) {
-    if (average > 15) socket.emit('clap');
+    if (average > 20) hasClapped();
     userEl.get(0).style.backgroundColor = 'hsl(170, ' + (average * 2) + '%, 50%)';
   });
 }
