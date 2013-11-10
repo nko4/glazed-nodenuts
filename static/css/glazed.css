@@ -249,5 +249,16 @@ progress {
   background-color: #f3f3f3;
   border: 0;
   height: 18px;
-  border-radius: 9px;
+}
+progress::-webkit-progress-bar {
+  background-color: #f3f3f3;
+  box-shadow: 0 0 5px #000 inset;
+}
+progress::-moz-progress-bar {
+  background-color: #f3f3f3;
+  box-shadow: 0 0 5px #000 inset;
+}
+progress::-webkit-progress-value {
+  background-color: #20d320;
+  box-shadow: 0 0 5px #000 inset;
 }
