@@ -110,7 +110,7 @@
         }
       }
 
-      songArray.push('Time: ' + songMinutes + ':' + songSeconds);
+      songArray.push('Time: ' + songMinutes + ':' + ((songSeconds.toString().length === 1) ? songSeconds + '0' : songSeconds));
 
       displaySongInfo( songArray );
 
