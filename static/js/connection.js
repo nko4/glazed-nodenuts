@@ -69,10 +69,13 @@ var sessions = { };
 var audiosContainer = document.getElementById('audios-container') || document.body;
 
 startBtn.onclick = function() {
-  this.disabled = true;
   connection.extra = {
     'session-name': 'Anonymous'
   };
+  connection.bandwidth = {
+    audio: 10
+  };
+
   connection.open();
 };
 
