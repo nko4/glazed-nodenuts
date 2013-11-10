@@ -89,6 +89,8 @@ function createUser(e) {
 }
 
 connection.onstreamended = function(e) {
+  e.mediaElement.volume = 0.6;
+
   var userEl = $('#user' + e.userid);
   userEl.fadeOut();
   setTimeout(function() {
