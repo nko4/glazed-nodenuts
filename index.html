@@ -53,17 +53,17 @@
                 
         <div id="tv-buttons">
           <ul class="tv-knobs">
-            <li>
-              <a href="#mute" class="tv-control" id="mute-global" onclick="connection.streams.mute()"></a>
+            <li class="button-muteall">
+              <a href="#muteall" class="tv-control" id="mute-global" onclick="connection.streams.mute()"></a>
               <a class="tv-label">mute all</a>
             </li>
-            <li>
-              <a href="#prev" class="tv-control" id="mute-self"></a>
+            <li class="button-muteself">
+              <a href="#muteself" class="tv-control" id="mute-self"></a>
               <a class="tv-label">mute self</a>
             </li>
-            <li>
-              <a href="#prev" class="tv-control" onclick=""></a>
-              <a class="tv-label">skip song</a>
+            <li class="button-skip">
+              <a href="#skip" class="tv-control vote-skip"></a>
+              <a class="tv-label">skip song<br />(<span class="count"></span> needed)</a>
             </li>
            	<li class="volume-range">
              <label for="vol">Volume</label>
@@ -87,10 +87,6 @@
         </div>
         
             
-    </section>
-
-    <section id="controls-extra" class="well">
-      <button class="btn btn-primary btn-lg btn-block vote-skip">Vote to skip song (need <span class="count"></span> votes)</button>
     </section>
 
     <footer>

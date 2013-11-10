@@ -51,6 +51,9 @@
   background-color: #F2A679;
   box-shadow: inset 0 0 10px #000000;
 }
+.tv-knobs li.button-skip {
+  margin: 50px 20px 10px;
+}
 .tv-knobs li.volume-range {
   box-shadow: none;
   background: transparent;
@@ -81,6 +84,10 @@
   cursor: pointer;
   background-color: transparent;
   -webkit-transform: translate(0px, 0px) rotate(0deg);
+}
+.tv-knobs li.button-skip .tv-label {
+  top: -45px;
+  line-height: 1em;
 }
 .tv-knobs li:hover .tv-label {
   color: #fff;

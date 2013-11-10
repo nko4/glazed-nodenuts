@@ -164,6 +164,10 @@ only screen and ( max-width: 600px) {
 	display: inline-block;
 	margin: 20px 10px;
   }
+  .tv-knobs li.button-skip {
+	position: relative;
+	top: 11px;
+  }
   .tv-title {
 	position: static;
 	bottom: 0;
