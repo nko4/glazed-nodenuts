@@ -2,7 +2,8 @@
   "use strict";
 
   $('.vote-skip').click(function() {
-    $.get('/api/playlist/skip');
+    socket.emit('voteSkip');
   });
+
 
 })(this);
