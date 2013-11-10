@@ -49,26 +49,26 @@
           </div>
         </div>
 
-        <div class="tv-title">
-          <span id="song-title"></span><br />
-          By <em id="song-artist"></em>
+		<progress value="0" max="100"></progress>
+        <div class="tv-title"></div>
+
+        <div id="tv-buttons">
+          <ul class="tv-knobs">
+            <li>
+              <a href="#next" class="tv-control" onclick="MIDI.Player.pause();"></a>
+              <a class="tv-label">pause</a>
+            </li>
+            <li>
+              <a href="#prev" class="tv-control" onclick="MIDI.Player.start()"></a>
+              <a class="tv-label">start</a>
+            </li>
+           <p class="volume-range">
+             <label for="vol">Volume</label>
+             <input id="vol" type="range" min="0" max="50" step="5" />
+            </p>
+          </ul>
+       
         </div>
-        <ul class="tv-knobs">
-          <li>
-            <a href="#next" class="tv-control" onclick="MIDI.Player.pause();"></a>
-            <a class="tv-label">pause</a>
-          </li>
-          <li>
-            <a href="#prev" class="tv-control" onclick="MIDI.Player.start()"></a>
-            <a class="tv-label">start</a>
-          </li>
-        </ul>
-        
-        <p class="volumn-range">
-          <label for="vol">Volume</label>
-          <input id="vol" type="range" min="0" max="50" step="5" />
-          <progress value="0" max="100"></progress>
-        </p>
         
             
     </section>
