@@ -20,9 +20,10 @@
       this.songTitle = $('.tv-title');
       this.volumeSlider = $('#vol');
       this.progress = $('progress');
-      this.muteGlobalButton = $('#mute-global');
-      this.muteSelfButton = $('#mute-self');
-      this.voteSkip = $('.vote-skip-count');
+      this.muteGlobalButton = $('#mute-global').parent();
+      this.muteSelfButton = $('#mute-self').parent();
+      this.voteSkipButton = $('.vote-skip-count').parent();
+      this.voteSkipCount = $('.vote-skip-count');
       this.clapCount = $('.clap-count');
     }
   };
@@ -194,7 +195,7 @@
       // Vote.
       if (left !== VOTE_COUNT) {
         VOTE_COUNT = left;
-        dom.voteSkip.text(left);
+        dom.voteSkipCount.text(left);
       }
       var claps = state.claps;
       if (claps && CLAP_COUNT !== claps) {
@@ -260,12 +261,12 @@
     var $clicked = $(this);
     if ( $clicked.hasClass('muted') ) {
       $clicked.removeClass('muted');
-      $clicked.siblings('.tv-label').text("mute all");
+      $clicked.children('.tv-label').text("mute all");
       connection.streams.unmute();
     }
     else {
       $clicked.addClass('muted');
-      $clicked.siblings('.tv-label').text("unmute all");
+      $clicked.children('.tv-label').text("unmute all");
       connection.streams.mute();
     }
   });
@@ -275,12 +276,12 @@
     var $clicked = $(this);
     if ( $clicked.hasClass('muted') ) {
       $clicked.removeClass('muted');
-      $clicked.siblings('.tv-label').text("mute self");
+      $clicked.children('.tv-label').text("mute self");
       connection.streams[connection.attachStreams[0].id].unmute();
     }
     else {
       $clicked.addClass('muted');
-      $clicked.siblings('.tv-label').text("unmute self");
+      $clicked.children('.tv-label').text("unmute self");
       connection.streams[connection.attachStreams[0].id].mute()
     }
   });
