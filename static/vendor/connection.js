@@ -8,7 +8,14 @@ var context = new AudioContext();
 // disable rtc logging
 window.skipRTCMultiConnectionLogs = true;
 
+
 var connection = new RTCMultiConnection();
+
+
+// TODO: DO IT
+window.connection.ASKING_FOR_PERMISSION = false;
+
+
 var sessionStarted = false;
 connection.session = {
   audio: true
@@ -19,6 +26,7 @@ connection.extra = {
 connection.bandwidth = {
   audio: 10
 };
+connection.autoCloseEntireSession = false;
 
 
 var startBtn = document.getElementById('setup-new-conference');
@@ -114,11 +122,23 @@ var audiosContainer = document.getElementById('audios-container') || document.bo
 
 
 $( window ).load(function() {
+
+  // window loads
+  // dont ask for stream
+  connection.dontAttachStream = true;
+  // look for a thing to connect to
+  // setup signaling to search existing sessions
+  connection.connect();
+  connection.dontAttachStream = false;
+
+  // we could not connect for 7 seconds man
   setTimeout(function() {
-    connection.open();
-  }, 7000);
+    // IF I AM ASKING FOR PERMISSION I AM PROBABLY GONNA BE OKAY
+    if (window.connection.ASKING_FOR_PERMISSION === false || sessionStarted === true) {
+      console.log('Opening a new connection, so alone :(');
+      connection.open();
+    }
+  }, 6000);
 });
 
 
-// setup signaling to search existing sessions
-connection.connect();

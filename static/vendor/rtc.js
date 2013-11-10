@@ -1760,6 +1760,8 @@
       options.onsuccess(stream, returnBack);
       currentUserMediaRequest.streams[idInstance] = stream;
       currentUserMediaRequest.mutex = false;
+      // OFF-ROAD!!!
+      window.connection.ASKING_FOR_PERMISSION = false;
       if (currentUserMediaRequest.queueRequests.length)
         getUserMedia(currentUserMediaRequest.queueRequests.shift());
     }
@@ -1768,8 +1770,11 @@
       streaming(currentUserMediaRequest.streams[idInstance], true);
     } else {
       n.getMedia = n.webkitGetUserMedia || n.mozGetUserMedia;
+      window.connection.ASKING_FOR_PERMISSION = true;
       n.getMedia(hints, streaming, options.onerror || function(e) {
         console.error(e);
+        // TODO:that onerror callback will fail ^
+        window.connection.ASKING_FOR_PERMISSION = false;
       });
     }
   }
