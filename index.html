@@ -95,7 +95,7 @@
 
   <script src="/socket.io/socket.io.js"></script>
 
-  {% if (!env === 'production') { %}
+  {% if (env !== 'production') { %}
   <!-- Ensure shim comes first. -->
   <script src="/js/shim.js"></script>
 

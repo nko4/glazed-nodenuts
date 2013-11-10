@@ -21,7 +21,6 @@ socket.configure(server);
 
 // Minify and GZip all assets at runtime who cares...
 app.configure('production', function() {
-  app.use(minify());
   app.use(express.compress());
 });
 
