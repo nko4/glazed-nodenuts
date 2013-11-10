@@ -41,11 +41,14 @@ connection.openSignalingChannel = function(config) {
 };
 
 connection.onstream = function(e) {
+  startBtn.style.display = 'none';
   sessionStarted = true;
 
   audiosContainer.insertBefore(e.mediaElement, audiosContainer.firstChild);
   rotateAudio(e.mediaElement);
 };
+
+
 
 function rotateAudio(mediaElement) {
   mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
@@ -65,29 +68,33 @@ connection.onstreamended = function(e) {
 };
 
 connection.onerror = function(e) {
-  console.log('onerror');
+  console.log('onerrror');
   console.log(e);
-// setup signaling to search existing sessions
-  connection.connect();
+
 };
 
 var sessions = { };
 var audiosContainer = document.getElementById('audios-container') || document.body;
 
-connection.extra = {
-  'session-name': 'Anonymous'
-};
-connection.bandwidth = {
-  audio: 10
-};
+startBtn.onclick = function() {
+  connection.extra = {
+    'session-name': 'Anonymous'
+  };
+  connection.bandwidth = {
+    audio: 10
+  };
 
-connection.open();
+  connection.open();
+};
 
 setTimeout(function() {
   if (!sessionStarted) {
+    startBtn.style.display = 'block';
   }
 }, 5000);
 
+// setup signaling to search existing sessions
+connection.connect();
 
 (function() {
   var uniqueToken = document.getElementById('unique-token');
