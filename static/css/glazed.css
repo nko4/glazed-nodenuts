@@ -35,7 +35,9 @@ section.experiment {
 }
 
 /** header **/
-
+#setup-new-conference {
+  margin: 10px auto;
+}
 header {
   width: 100%;
   margin: 0 auto; 
