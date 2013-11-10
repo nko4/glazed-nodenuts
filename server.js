@@ -4,7 +4,6 @@ require('nko')('G-TTdL9lMtih7ZXl');
 // Require.
 var fs = require('fs');
 var express = require('express');
-var minify = require('express-minify');
 var api = require('./lib/api');
 var socket = require('./lib/socket');
 
