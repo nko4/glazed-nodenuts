@@ -71,9 +71,10 @@
   -webkit-transform: translate(6px, 22px) rotate(180deg);
 }
 .tv-knobs li .tv-label {
-  width: 60px;
+  width: 120px;
   position: relative;
   top: -35px;
+  left: -30px;
   text-align: center;
   color: #000;
   font-family: monospace;
