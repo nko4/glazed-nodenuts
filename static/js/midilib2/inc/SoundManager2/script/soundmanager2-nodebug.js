@@ -1347,7 +1347,7 @@ function SoundManager(smURL, smID) {
       if (_t._iO.onmetadata) {
         _t._iO.onmetadata.apply(_t);
       }
-	};
+        };
     this._onid3 = function(oID3Props, oID3Data) {
       var oData = [], i, j;
       for (i = 0, j = oID3Props.length; i < j; i++) {
