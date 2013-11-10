@@ -8,8 +8,6 @@
   var player = null;
   var song = null;
 
-  var SWITCHING = false;
-
   // Cache me some jQuery DOM.
   var dom = {
     refresh: function() {
@@ -17,6 +15,7 @@
       this.monitor = $('.tv-contents');
       this.songTitle = $('.tv-title');
       this.volumeSlider = $('#vol');
+      this.progress = $('progress');
     }
   };
 
@@ -62,7 +61,6 @@
   }
 
   function play() {
-    SWITCHING = false;
     // Awesome variable name.
     var $lyrics = dom.lyrics.find('a-lyric');
 
@@ -169,12 +167,14 @@
     var socket = io.connect(url);
 
     socket.on('pulse', function(state) {
+      dom.progress.val((state.position / state.endTime) * 100);
+
       //console.log(state);
       // If we are on a totally different song now, change it.
-      if (currentSongFile !== state.song && !SWITCHING) {
+      if (currentSongFile !== state.song) {
         // Reset.
         song = state.song;
-        SWITCHING = true;
+        currentSongFile = state.song;
 
         return playCurrentSong();
       }
