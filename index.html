@@ -3,19 +3,7 @@
 <head>
   <title>NODE.SONGBOX</title>
 
-  <link rel="stylesheet" href="css/bootstrap.css" />
-  
-  <link rel="stylesheet" href="css/tv.css" />
-  <link rel="stylesheet" href="css/glazed.css" />
-  <link rel="stylesheet" href="css/heart.css" />
-
-  <script src="/js/jquery-1.10.2.js"></script>
-  <script src="/js/lodash.js"></script>
-
-  
-  <!-- scripts used for broadcasting -->
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/rtc.js"> </script>
+  <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -104,33 +92,38 @@
 
   </section>
 
-<!-- Engine 2  -->
-<script src="/js/midilib2/MIDI/AudioDetect.js" type="text/javascript"></script>
-<script src="/js/midilib2/MIDI/LoadPlugin.js" type="text/javascript"></script>
-<script src="/js/midilib2/MIDI/Plugin.js" type="text/javascript"></script>
-<script src="/js/midilib2/MIDI/Player.js" type="text/javascript"></script>
-<script src="/js/midilib2/Widgets/Loader.js" type="text/javascript"></script>
-<script src="/js/midilib2/Window/Event.js" type="text/javascript"></script>
-<script src="/js/midilib2/Window/DOMLoader.XMLHttp.js" type="text/javascript"></script>
-<script src="/js/midilib2/Window/DOMLoader.script.js" type="text/javascript"></script>
-<!-- jasmid package -->
-<script src="/js/midilib2/inc/jasmid/stream.js"></script>
-<script src="/js/midilib2/inc/jasmid/midifile.js"></script>
-<script src="/js/midilib2/inc/jasmid/replayer.js"></script>
-<!-- extras -->
-<script src="/js/midilib2/inc/Base64.js" type="text/javascript"></script>
-<script src="/js/midilib2/inc/base64binary.js" type="text/javascript"></script>
+  <script src="/vendor/jquery.js"></script>
+  <script src="/vendor/lodash.js"></script>
+  
+  <!-- scripts used for broadcasting -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/vendor/rtc.js"> </script>
 
+  <!-- Engine 2  -->
+  <script src="/vendor/midilib2/MIDI/AudioDetect.js" type="text/javascript"></script>
+  <script src="/vendor/midilib2/MIDI/LoadPlugin.js" type="text/javascript"></script>
+  <script src="/vendor/midilib2/MIDI/Plugin.js" type="text/javascript"></script>
+  <script src="/vendor/midilib2/MIDI/Player.js" type="text/javascript"></script>
+  <script src="/vendor/midilib2/Widgets/Loader.js" type="text/javascript"></script>
+  <script src="/vendor/midilib2/Window/Event.js" type="text/javascript"></script>
+  <script src="/vendor/midilib2/Window/DOMLoader.XMLHttp.js" type="text/javascript"></script>
+  <script src="/vendor/midilib2/Window/DOMLoader.script.js" type="text/javascript"></script>
+  <!-- jasmid package -->
+  <script src="/vendor/midilib2/inc/jasmid/stream.js"></script>
+  <script src="/vendor/midilib2/inc/jasmid/midifile.js"></script>
+  <script src="/vendor/midilib2/inc/jasmid/replayer.js"></script>
+  <!-- extras -->
+  <script src="/vendor/midilib2/inc/Base64.js" type="text/javascript"></script>
+  <script src="/vendor/midilib2/inc/base64binary.js" type="text/javascript"></script>
 
-<script src="/js/shim.js"> </script>
-<script src="/js/init.js"> </script>
-<script src="/js/clap.js"> </script>
-<script src="/js/skip.js"> </script>
+  <script src="/vendor/identicon.js"> </script>
+  <script src="/vendor/connection.js"> </script>
 
-<script src="/js/identicon.js"> </script>
-<!-- <script src="/js/room.js"> </script>-->
-<script src="/js/connection.js"> </script>
-<link rel="stylesheet" href="css/room.css" />
+  <script src="/js/shim.js"> </script>
+  <script src="/js/init.js"> </script>
+  <script src="/js/clap.js"> </script>
+  <script src="/js/skip.js"> </script>
+  <!-- <script src="/js/room.js"> </script>-->
 
 </body>
 </html>
