@@ -93,6 +93,9 @@
 
   </section>
 
+  <script src="/socket.io/socket.io.js"></script>
+
+  {% if (!env === 'production') { %}
   <!-- Ensure shim comes first. -->
   <script src="/js/shim.js"></script>
 
@@ -100,7 +103,6 @@
   <script src="/vendor/lodash.js"></script>
   
   <!-- scripts used for broadcasting -->
-  <script src="/socket.io/socket.io.js"></script>
   <script src="/vendor/rtc.js"> </script>
 
   <!-- Engine 2  -->
@@ -125,7 +127,8 @@
 
   <script src="/js/init.js"> </script>
   <script src="/js/skip.js"> </script>
-
-
+  {% } else { %}
+  <script src="/glazed.js"></script>
+  {% } %}
 </body>
 </html>
