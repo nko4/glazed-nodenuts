@@ -204,7 +204,7 @@
   
   // Dom events
   dom.volumeSlider.change(function(){
-    MIDI.setVolume($(this).val());
+    MIDI.setVolume(0, $(this).val());
     console.log($(this).val());
   });
 })(this);
