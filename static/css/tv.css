@@ -87,8 +87,10 @@
   opacity: 1;
   -webkit-transform: translate(0px, 0px) rotate(0deg);
 }
+#tv-users {
+  margin: 20px;
+}
 .tv-title {
-  width: 95%;
   background-color: #9240DD;
   padding: 10px 15px;
   margin: 10px auto;
