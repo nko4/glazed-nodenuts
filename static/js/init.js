@@ -146,7 +146,9 @@
           // get position of active lyric
           var monitorPosition = dom.monitor.position()
           var activePosition = $($lyrics[index]).position();
-          scrollLyrics(activePosition.top - monitorPosition.top);
+          if ( activePosition ) {
+	        scrollLyrics(activePosition.top - monitorPosition.top);
+          }
 
           if ($lyrics[index-1]) {
             $lyrics[index-1].classList.remove('active');
