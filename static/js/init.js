@@ -210,8 +210,11 @@
       if (player) {
         var roughCurrent = parseInt(player.currentTime.toString().substr(0,2));
         var roughState = parseInt(state.position.toString().substr(0,2));
-        // Only STOP and SYNC if off by 2
-        if (roughCurrent < roughState - 2 || roughCurrent > roughState + 2) {
+
+        var difference = Math.abs(roughCurrent-roughState);
+
+        // Only STOP and SYNC if off by 5 and less than 20.
+        if (difference > 2 && difference < 10) {
           player.stop();
           player.currentTime = state.position * 1000;
           player.start();
