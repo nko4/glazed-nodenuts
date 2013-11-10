@@ -8,9 +8,6 @@
   var player = null;
   var song = null;
 
-  var SWITCHING = false;
-  var SYNCING = false;
-
   // Cache me some jQuery DOM.
   var dom = {
     refresh: function() {
@@ -18,6 +15,7 @@
       this.monitor = $('.tv-contents');
       this.songTitle = $('.tv-title');
       this.volumeSlider = $('#vol');
+      this.progress = $('progress');
     }
   };
 
@@ -63,7 +61,6 @@
   }
 
   function play() {
-    SWITCHING = false;
     // Awesome variable name.
     var $lyrics = dom.lyrics.find('a-lyric');
     scrollLyrics(0);
@@ -92,7 +89,7 @@
         player.currentTime = startPosition * 1000;
         player.start();
       });
-      
+
       // Retrieve song end time
       var endTimeRaw = MIDI.Player.endTime;
       var songMinutes = Math.floor(endTimeRaw/60000);
@@ -101,19 +98,19 @@
       // Retrieve song meta data and put into array
       var songArray = []
       for (var i = 0; i <= 100; i++ ) {
-        var event  = player.data[i][0].event;	  
+        var event  = player.data[i][0].event;
         if ( event.type == 'meta' && event.text ) {
-          var metaText = event.text.split(""); 
+          var metaText = event.text.split("");
           if ( metaText[1] == 'T') {
-          songArray.push(event.text.substr(2, event.text.length -2));
+            songArray.push(event.text.substr(2, event.text.length -2));
+          }
         }
-        } 
       }
-      
+
       songArray.push('Time: ' + songMinutes + ':' + songSeconds);
-    
+
       displaySongInfo( songArray );
-     
+
       // set songArray to global in case needed later
       window.songArray = songArray;
 
@@ -170,12 +167,14 @@
     var socket = io.connect(url);
 
     socket.on('pulse', function(state) {
+      dom.progress.val((state.position / state.endTime) * 100);
+
       //console.log(state);
       // If we are on a totally different song now, change it.
-      if (currentSongFile !== state.song && !SWITCHING) {
+      if (currentSongFile !== state.song) {
         // Reset.
         song = state.song;
-        SWITCHING = true;
+        currentSongFile = state.song;
 
         return playCurrentSong();
       }
@@ -211,7 +210,7 @@
 
   // Kick off the application by starting the current song.
   playCurrentSong();
-  
+
   // Dom events
   dom.volumeSlider.change(function(){
     MIDI.setVolume(0, $(this).val());
