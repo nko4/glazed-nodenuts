@@ -78,7 +78,7 @@
         // this is the language we are running in
         // this sets up the MIDI.Player and gets things going...
         player = MIDI.Player;
-        MIDI.setVolume(0,9);
+        MIDI.setVolume(0,50);
 
         cont();
       });
