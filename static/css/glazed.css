@@ -70,6 +70,7 @@ header h1 small {
   position: absolute;
   top: 0;
   right: 0;
+  background-color: red;
   -webkit-animation: rainbow 10s infinite alternate;
   padding: 0 5px;
   border-radius: 5px;
@@ -121,6 +122,8 @@ some-lyrics {
   position: absolute; 
   left:0;
   -webkit-transition: all 1s linear;
+  -moz-transition: all 1s linear;
+  -transition: all 1s linear;
 }
 some-lyrics a-lyric.active {
   color: #f79bbd;
@@ -197,16 +200,24 @@ some-lyrics a-lyric.retired {
   height: 15px;
   background-color: #F2D857;
   -webkit-transform: translate(6px, 22px) rotate(90deg);
+  -moz-transform: translate(6px, 22px) rotate(90deg);
+  -transform: translate(6px, 22px) rotate(90deg);
   border-radius: 10px;
 }
 .tv-knobs li:first-child .tv-control {
   -webkit-transform: translate(6px, 22px) rotate(45deg);
+  -moz-transform: translate(6px, 22px) rotate(45deg);
+  transform: translate(6px, 22px) rotate(45deg);
 }
 .tv-knobs li:nth-child(3) .tv-control {
   -webkit-transform: translate(6px, 22px) rotate(-20deg);
+  -moz-transform: translate(6px, 22px) rotate(-20deg);
+  transform: translate(6px, 22px) rotate(-20deg);
 }
 .tv-knobs li:hover .tv-control {
   -webkit-transform: translate(6px, 22px) rotate(180deg);
+  -moz-transform: translate(6px, 22px) rotate(180deg);
+  transform: translate(6px, 22px) rotate(180deg);
 }
 .tv-knobs li .tv-label {
   width: 120px;
@@ -219,6 +230,8 @@ some-lyrics a-lyric.retired {
   cursor: pointer;
   background-color: transparent;
   -webkit-transform: translate(0px, 0px) rotate(0deg);
+  -moz-transform: translate(0px, 0px) rotate(0deg);
+  transform: translate(0px, 0px) rotate(0deg);
 }
 .tv-knobs li.button-skip .tv-label {
   top: -45px;
@@ -228,6 +241,8 @@ some-lyrics a-lyric.retired {
   color: #fff;
   opacity: 1;
   -webkit-transform: translate(0px, 0px) rotate(0deg);
+  -moz-transform: translate(0px, 0px) rotate(0deg);
+  transform: translate(0px, 0px) rotate(0deg);
 }
 .volume-range {
   width: 60px;
@@ -254,7 +269,7 @@ progress::-webkit-progress-bar {
   box-shadow: 0 0 5px #000 inset;
 }
 progress::-moz-progress-bar {
-  background-color: #f3f3f3;
+  background-color: #20d320;
   box-shadow: 0 0 5px #000 inset;
 }
 progress::-webkit-progress-value {
